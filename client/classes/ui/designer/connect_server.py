@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'connect_camera.ui'
+# Form implementation generated from reading ui file 'connect_server.ui'
 #
 # Created by: PyQt5 UI code generator 5.13.2
 #
@@ -91,7 +91,7 @@ class Ui_Dialog(object):
         self.horizontalLayout = QtWidgets.QHBoxLayout()
         self.horizontalLayout.setObjectName("horizontalLayout")
         self.pushButton_ok = QtWidgets.QPushButton(self.verticalLayoutWidget)
-        self.pushButton_ok.setEnabled(True)
+        self.pushButton_ok.setEnabled(False)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Minimum, QtWidgets.QSizePolicy.Fixed)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)

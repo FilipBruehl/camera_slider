@@ -211,7 +211,7 @@ border-style: solid;
       <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
        <widget class="QPushButton" name="pushButton_ok">
         <property name="enabled">
-         <bool>true</bool>
+         <bool>false</bool>
         </property>
         <property name="sizePolicy">
          <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
@@ -245,40 +245,6 @@ border-style: solid;</string>
         </property>
         <property name="text">
          <string>Verbinden</string>
-        </property>
-       </widget>
-      </item>
-      <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-       <widget class="QPushButton" name="pushButton_reset">
-        <property name="minimumSize">
-         <size>
-          <width>150</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="maximumSize">
-         <size>
-          <width>150</width>
-          <height>30</height>
-         </size>
-        </property>
-        <property name="font">
-         <font>
-          <family>Bahnschrift</family>
-          <pointsize>18</pointsize>
-         </font>
-        </property>
-        <property name="styleSheet">
-         <string notr="true">border-radius: 5px;
-border-width: 2px;
-border-color: rgb(0, 0, 0);
-border-style: solid;</string>
-        </property>
-        <property name="text">
-         <string>Abbrechen</string>
-        </property>
-        <property name="flat">
-         <bool>false</bool>
         </property>
        </widget>
       </item>

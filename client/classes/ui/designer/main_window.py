@@ -184,6 +184,7 @@ class Ui_MainWindow(object):
         self.actionConnect.setFont(font)
         self.actionConnect.setObjectName("actionConnect")
         self.actionDisconnect = QtWidgets.QAction(MainWindow)
+        self.actionDisconnect.setEnabled(False)
         font = QtGui.QFont()
         font.setFamily("Bahnschrift")
         self.actionDisconnect.setFont(font)

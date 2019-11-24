@@ -15,3 +15,6 @@ class Client:
             return True
         except:
             return False
+
+    def disconnect(self):
+        self.socket.close()

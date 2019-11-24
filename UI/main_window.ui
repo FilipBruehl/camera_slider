@@ -400,6 +400,9 @@ border-width: 2px;</string>
    </property>
   </action>
   <action name="actionDisconnect">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Verbindung trennen</string>
    </property>
