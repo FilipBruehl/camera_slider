@@ -1,9 +1,8 @@
-import sys
 import socket
 import pickle
 import gphoto2 as gp
 from threading import Thread
-from helpers.camera import init_camera
+from classes.camera import Camera
 
 
 class Server:
@@ -20,8 +19,6 @@ class Server:
         self.exit = False
         self.thread_recv = Thread(target=self.receive)
         self.thread_recv.start()
-        self.cameras_available = None
-        self.camera_selected_index = None
         self.camera_selected = None
 
     def receive(self):
@@ -79,12 +76,10 @@ class Server:
     def handle_command(self, command, data=None):
         if command == "get cameras":
             if hasattr(gp, 'gp_camera_autodetect'):
-                self.cameras_available = gp.check_result(gp.gp_camera_autodetect())
-                cameras_send = [camera[0] for camera in self.cameras_available]
+                cameras_send = [camera[0] for camera in Camera.get_available_cameras()]
                 self.send("send cameras", cameras_send)
         elif command == "set camera":
-            self.camera_selected_index = data
-            self.camera_selected = init_camera(self.cameras_available[self.camera_selected_index])
+            self.camera_selected = Camera(data)
         elif command == "disconnect client":
             print(f"{self.conn_ip} disconnected")
             self.conn.close()
