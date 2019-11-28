@@ -1,13 +1,12 @@
 import sys
-from PyQt5.QtWidgets import QApplication
-from classes.ui.MainWindow import MainWindow
-from classes.client import Client
+import socketio
+from classes.ClientSocketio import Client
 
+
+sio = socketio.Client('eventlet')
 
 if __name__ == "__main__":
-    client = Client.get_instance()
+    client = Client.get_instance(sio, '/')
+    sio.register_namespace(client)
     print(client)
-    app = QApplication(sys.argv)
-    w = MainWindow()
-    w.show()
-    sys.exit(app.exec_())
+    sys.exit(client.run())

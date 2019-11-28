@@ -29,27 +29,36 @@
    </font>
   </property>
   <property name="windowTitle">
-   <string>Kamera verbinden</string>
+   <string>Dialog</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
   </property>
   <property name="styleSheet">
    <string notr="true">background-color: white;</string>
   </property>
-  <widget class="QWidget" name="gridLayoutWidget">
+  <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
      <width>452</width>
-     <height>401</height>
+     <height>408</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout">
     <property name="spacing">
      <number>0</number>
     </property>
-    <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
-     <widget class="QLabel" name="label_heading">
+    <item>
+     <widget class="QLabel" name="label_camera_verbinden">
       <property name="minimumSize">
+       <size>
+        <width>450</width>
+        <height>50</height>
+       </size>
+      </property>
+      <property name="maximumSize">
        <size>
         <width>450</width>
         <height>50</height>
@@ -59,52 +68,44 @@
        <font>
         <family>Bahnschrift</family>
         <pointsize>18</pointsize>
-        <weight>75</weight>
-        <bold>true</bold>
        </font>
       </property>
       <property name="text">
        <string>Mit Kamera verbinden</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
     <item>
      <widget class="QListView" name="listView_cameras">
+      <property name="minimumSize">
+       <size>
+        <width>450</width>
+        <height>300</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>450</width>
+        <height>300</height>
+       </size>
+      </property>
       <property name="font">
        <font>
         <family>Bahnschrift</family>
         <pointsize>12</pointsize>
        </font>
       </property>
-      <property name="editTriggers">
-       <set>QAbstractItemView::DoubleClicked|QAbstractItemView::EditKeyPressed|QAbstractItemView::SelectedClicked</set>
-      </property>
-      <property name="itemAlignment">
-       <set>Qt::AlignLeading</set>
-      </property>
      </widget>
     </item>
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
-      <property name="spacing">
-       <number>0</number>
-      </property>
-      <property name="topMargin">
-       <number>10</number>
-      </property>
-      <property name="bottomMargin">
-       <number>10</number>
-      </property>
-      <item alignment="Qt::AlignHCenter|Qt::AlignVCenter">
+      <item>
        <widget class="QPushButton" name="pushButton_select">
         <property name="enabled">
          <bool>false</bool>
-        </property>
-        <property name="sizePolicy">
-         <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
-          <horstretch>0</horstretch>
-          <verstretch>0</verstretch>
-         </sizepolicy>
         </property>
         <property name="minimumSize">
          <size>
