@@ -64,6 +64,9 @@
       <layout class="QVBoxLayout" name="verticalLayout_right">
        <item>
         <widget class="QGroupBox" name="groupBox_info">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="font">
           <font>
            <family>Bahnschrift</family>
@@ -185,19 +188,19 @@ border: none;</string>
             <x>10</x>
             <y>100</y>
             <width>400</width>
-            <height>50</height>
+            <height>300</height>
            </rect>
           </property>
           <property name="minimumSize">
            <size>
             <width>400</width>
-            <height>50</height>
+            <height>300</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>400</width>
-            <height>50</height>
+            <height>300</height>
            </size>
           </property>
           <property name="font">
@@ -218,13 +221,13 @@ border-width: 2px;</string>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
-          <widget class="QLabel" name="label_info_camera">
+          <widget class="QLabel" name="label_info_camera_name">
            <property name="geometry">
             <rect>
              <x>15</x>
              <y>15</y>
              <width>187</width>
-             <height>29</height>
+             <height>30</height>
             </rect>
            </property>
            <property name="font">
@@ -240,14 +243,17 @@ background-color: transparent;</string>
            <property name="text">
             <string>Verbunden mit:</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
-          <widget class="QLabel" name="label_info_camera_name">
+          <widget class="QLabel" name="input_info_camera_name">
            <property name="geometry">
             <rect>
              <x>210</x>
              <y>15</y>
              <width>186</width>
-             <height>29</height>
+             <height>30</height>
             </rect>
            </property>
            <property name="font">
@@ -257,12 +263,356 @@ background-color: transparent;</string>
             </font>
            </property>
            <property name="styleSheet">
-            <string notr="true">background-color: transparent;
-border: none;
+            <string notr="true">border: none;
 color: #DB2828;</string>
            </property>
            <property name="text">
             <string>Nicht verbunden</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_info_camera_akku">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>55</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Akku:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_info_camera_blende">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>95</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Blende:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_info_camera_shutter">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>135</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Verschlusszeit:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_info_camera_iso">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>175</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>ISO:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_info_camera_fokus">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>215</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Fokus:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_info_camera_format">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>255</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Bildformat:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_camera_akku">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>55</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_camera_blende">
+           <property name="enabled">
+            <bool>true</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>95</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_camera_shutter">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>135</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_camera_iso">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>175</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_camera_fokus">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>215</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_camera_format">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>255</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </widget>
@@ -270,7 +620,7 @@ color: #DB2828;</string>
           <property name="geometry">
            <rect>
             <x>10</x>
-            <y>170</y>
+            <y>420</y>
             <width>400</width>
             <height>100</height>
            </rect>
@@ -354,29 +704,15 @@ border-width: 2px;</string>
     <addaction name="separator"/>
     <addaction name="actionConnectCamera"/>
    </widget>
-   <widget class="QMenu" name="menuSchliessen">
-    <property name="font">
-     <font>
-      <family>Bahnschrift</family>
-     </font>
-    </property>
+   <widget class="QMenu" name="menuProgramm">
     <property name="title">
-     <string>Schließen</string>
+     <string>Programm</string>
     </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionClose"/>
    </widget>
-   <widget class="QMenu" name="menuUeber">
-    <property name="font">
-     <font>
-      <family>Bahnschrift</family>
-     </font>
-    </property>
-    <property name="title">
-     <string>Über</string>
-    </property>
-   </widget>
+   <addaction name="menuProgramm"/>
    <addaction name="menuServer"/>
-   <addaction name="menuUeber"/>
-   <addaction name="menuSchliessen"/>
   </widget>
   <action name="actionConnect">
    <property name="text">
@@ -422,6 +758,16 @@ border-width: 2px;</string>
   <action name="actionImportieren">
    <property name="text">
     <string>Importieren</string>
+   </property>
+  </action>
+  <action name="actionAbout">
+   <property name="text">
+    <string>Über</string>
+   </property>
+  </action>
+  <action name="actionClose">
+   <property name="text">
+    <string>Beenden</string>
    </property>
   </action>
  </widget>

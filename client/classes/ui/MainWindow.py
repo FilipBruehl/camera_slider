@@ -12,6 +12,7 @@ class MainWindow(QMainWindow, Observer):
     connect_server_signal = pyqtSignal()
     disconnect_server_signal = pyqtSignal()
     connect_camera_signal = pyqtSignal()
+    about_signal = pyqtSignal()
     close_signal = pyqtSignal()
 
     def __init__(self):
@@ -21,7 +22,8 @@ class MainWindow(QMainWindow, Observer):
         self.ui.actionConnect.triggered.connect(self.connect_server_signal)
         self.ui.actionDisconnect.triggered.connect(self.disconnect_server_signal)
         self.ui.actionConnectCamera.triggered.connect(self.connect_camera_signal)
-        self.ui.menuSchliessen.triggered.connect(self.close_signal)
+        self.ui.actionAbout.triggered.connect(self.about_signal)
+        self.ui.actionClose.triggered.connect(self.close_signal)
         DataContainer.get_instance().attach(self)
 
     def set_connected(self, ip):
