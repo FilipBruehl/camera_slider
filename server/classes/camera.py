@@ -106,3 +106,7 @@ class Camera:
         iso = config.get_child_by_name('iso')
         iso = iso.get_value()
         return iso
+
+    def exit(self):
+        self.camera.exit()
+        self.camera = None

@@ -55,10 +55,387 @@
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_left"/>
+      <layout class="QVBoxLayout" name="verticalLayout_left">
+       <item>
+        <widget class="QGroupBox" name="groupBox_steuerung">
+         <property name="font">
+          <font>
+           <family>Bahnschrift</family>
+           <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Einstellungen</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <widget class="QGroupBox" name="groupBox_steuerung_slider">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>420</y>
+            <width>400</width>
+            <height>90</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Bahnschrift</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-color: #000;
+border-radius: 5px;
+border-style: solid;
+border-width: 2px;
+</string>
+          </property>
+          <property name="title">
+           <string>Slider</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <widget class="QPushButton" name="pushButton_steuerung_slider">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>125</x>
+             <y>30</y>
+             <width>150</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>18</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Starten</string>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
-      <layout class="QVBoxLayout" name="verticalLayout_center"/>
+      <layout class="QVBoxLayout" name="verticalLayout_center">
+       <item>
+        <widget class="QGroupBox" name="groupBox_settings">
+         <property name="font">
+          <font>
+           <family>Bahnschrift</family>
+           <pointsize>12</pointsize>
+           <weight>75</weight>
+           <bold>true</bold>
+          </font>
+         </property>
+         <property name="title">
+          <string>Einstellungen</string>
+         </property>
+         <property name="alignment">
+          <set>Qt::AlignCenter</set>
+         </property>
+         <widget class="QGroupBox" name="groupBox_settings_slider">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>420</y>
+            <width>400</width>
+            <height>215</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Bahnschrift</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">border-color: #000;
+border-radius: 5px;
+border-style: solid;
+border-width: 2px;
+</string>
+          </property>
+          <property name="title">
+           <string>Slider</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <widget class="QLabel" name="label_settings_slider_start">
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>15</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Startpunkt:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QComboBox" name="comboBox_settings_slider_start">
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>15</y>
+             <width>185</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="editable">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>Links</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Mitte</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Rechts</string>
+            </property>
+           </item>
+          </widget>
+          <widget class="QLabel" name="label_settings_slider_richtung">
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>55</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Richtung:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QComboBox" name="comboBox_settings_slider_richtung">
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>55</y>
+             <width>185</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="editable">
+            <bool>false</bool>
+           </property>
+           <item>
+            <property name="text">
+             <string>Rechts</string>
+            </property>
+           </item>
+           <item>
+            <property name="text">
+             <string>Links</string>
+            </property>
+           </item>
+          </widget>
+          <widget class="QLabel" name="label_settings_slider_steps">
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>95</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Schritte:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="lineEdit_settings_slider_steps">
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>95</y>
+             <width>185</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>18</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: transparent;</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="placeholderText">
+            <string>Schrittanzahl</string>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_settings_slider_frequenz">
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>135</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Frequenz:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="lineEdit_settings_slider_frequenz">
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>135</y>
+             <width>185</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>18</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">background-color: transparent;</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="placeholderText">
+            <string>Schritte/Sekunde</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_settings_slider">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>125</x>
+             <y>175</y>
+             <width>150</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>18</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Einstellen</string>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </widget>
+        </widget>
+       </item>
+      </layout>
      </item>
      <item>
       <layout class="QVBoxLayout" name="verticalLayout_right">
@@ -93,7 +470,7 @@
             <x>10</x>
             <y>30</y>
             <width>400</width>
-            <height>50</height>
+            <height>55</height>
            </rect>
           </property>
           <property name="sizePolicy">
@@ -105,13 +482,13 @@
           <property name="minimumSize">
            <size>
             <width>400</width>
-            <height>50</height>
+            <height>55</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>400</width>
-            <height>50</height>
+            <height>55</height>
            </size>
           </property>
           <property name="font">
@@ -138,8 +515,8 @@ border-width: 2px;
             <rect>
              <x>15</x>
              <y>15</y>
-             <width>185</width>
-             <height>25</height>
+             <width>187</width>
+             <height>30</height>
             </rect>
            </property>
            <property name="font">
@@ -154,14 +531,17 @@ border-width: 2px;
            <property name="text">
             <string>Verbunden mit:</string>
            </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
           </widget>
           <widget class="QLabel" name="label_info_server_ip">
            <property name="geometry">
             <rect>
              <x>210</x>
              <y>15</y>
-             <width>185</width>
-             <height>25</height>
+             <width>187</width>
+             <height>30</height>
             </rect>
            </property>
            <property name="font">
@@ -178,7 +558,7 @@ border: none;</string>
             <string>Nicht verbunden</string>
            </property>
            <property name="alignment">
-            <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+            <set>Qt::AlignCenter</set>
            </property>
           </widget>
          </widget>
@@ -617,24 +997,27 @@ background-color: transparent;</string>
           </widget>
          </widget>
          <widget class="QGroupBox" name="groupBox_info_slider">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="geometry">
            <rect>
             <x>10</x>
             <y>420</y>
             <width>400</width>
-            <height>100</height>
+            <height>250</height>
            </rect>
           </property>
           <property name="minimumSize">
            <size>
             <width>400</width>
-            <height>100</height>
+            <height>250</height>
            </size>
           </property>
           <property name="maximumSize">
            <size>
             <width>400</width>
-            <height>100</height>
+            <height>250</height>
            </size>
           </property>
           <property name="font">
@@ -655,6 +1038,345 @@ border-width: 2px;</string>
           <property name="alignment">
            <set>Qt::AlignCenter</set>
           </property>
+          <widget class="QLabel" name="label_info_slider_links">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>15</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Abstand Links:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_info_slider_rechts">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>55</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Abstand Rechts:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_slider_links">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>15</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_slider_rechts">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>55</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_info_slider_frequenz">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>135</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Frequenz:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_slider_status">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>95</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_info_slider_status">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>95</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Status:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_slider_frequenz">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>135</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_info_slider_richtung">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>175</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Richtung:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_slider_richtung">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>175</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="label_info_slider_steps">
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>210</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;
+background-color: transparent;</string>
+           </property>
+           <property name="text">
+            <string>Schritte:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLabel" name="input_info_slider_steps">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>210</y>
+             <width>186</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true">border: none;</string>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
          </widget>
         </widget>
        </item>
@@ -703,6 +1425,10 @@ border-width: 2px;</string>
     <addaction name="actionDisconnect"/>
     <addaction name="separator"/>
     <addaction name="actionConnectCamera"/>
+    <addaction name="actionDisconnectCamera"/>
+    <addaction name="separator"/>
+    <addaction name="actionConnectMotor"/>
+    <addaction name="actionDisconnectMotor"/>
    </widget>
    <widget class="QMenu" name="menuProgramm">
     <property name="title">
@@ -764,10 +1490,40 @@ border-width: 2px;</string>
    <property name="text">
     <string>Über</string>
    </property>
+   <property name="shortcut">
+    <string>Ctrl+A</string>
+   </property>
   </action>
   <action name="actionClose">
    <property name="text">
     <string>Beenden</string>
+   </property>
+   <property name="shortcut">
+    <string>Ctrl+X</string>
+   </property>
+  </action>
+  <action name="actionDisconnectCamera">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Kamera Verbindung trennen</string>
+   </property>
+  </action>
+  <action name="actionConnectMotor">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Motor verbinden</string>
+   </property>
+  </action>
+  <action name="actionDisconnectMotor">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Motor Verbindung trennen</string>
    </property>
   </action>
  </widget>

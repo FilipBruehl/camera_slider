@@ -22,6 +22,8 @@ class Client(socketio.ClientNamespace):
         self.sio = sio
         self.app = app
         self.connected = False
+        self.camera_connected = False
+        self.motor_connected = False
         self._app = QApplication(sys.argv)
         self._window = MainWindow()
         self.init_window()
@@ -30,7 +32,11 @@ class Client(socketio.ClientNamespace):
         self._window.connect_server_signal.connect(self.start)
         self._window.disconnect_server_signal.connect(self.disconnect)
         self._window.connect_camera_signal.connect(self.get_available_cameras)
-        # self._window.close_signal.connect()
+        self._window.disconnect_camera_signal.connect(self.disconnect_camera)
+        self._window.connect_motor_signal.connect(self.connect_motor)
+        self._window.disconnect_motor_signal.connect(self.disconnect_motor)
+        self._window.set_slider_settings_singal.connect(self.set_slider_settings)
+        self._window.start_slider_signal.connect(self.start_slider)
 
     def run(self):
         self._window.show()
@@ -49,7 +55,22 @@ class Client(socketio.ClientNamespace):
         self._window.set_not_connected()
 
     def get_available_cameras(self):
-        self.sio.emit("get_cameras")
+        self.sio.emit('get_cameras')
+
+    def disconnect_camera(self):
+        self.sio.emit('disconnect_camera')
+
+    def connect_motor(self):
+        self.sio.emit('connect_motor')
+
+    def disconnect_motor(self):
+        self.sio.emit('disconnect_motor')
+
+    def set_slider_settings(self):
+        self.sio.emit('set_slider_settings', self._window.get_slider_settings())
+
+    def start_slider(self):
+        self.sio.emit('start_slider')
 
     @staticmethod
     def get_instance(sio=None, app=None, namespace=None):
@@ -76,17 +97,44 @@ class Client(socketio.ClientNamespace):
         self._window.set_not_connected()
 
     @sio.event
+    def on_camera_not_available(self, data):
+        self._window.set_camera_not_available()
+
+    @sio.event
     def on_send_cameras(self, data):
-        print(data)
-        if data:
-            self.sio.emit('set_camera', 0)
-        else:
-            self._window.set_camera_not_available()
+        self.sio.emit('set_camera', 0)
 
     @sio.event
     def on_camera_init(self, data):
-        print(data)
+        self.camera_connected = True
         self._window.set_camera_connected(data)
+
+    @sio.event
+    def on_camera_disconnected(self, data):
+        self.camera_connected = False
+        self._window.set_camera_disconnected()
+
+    @sio.event
+    def on_motor_connected(self, data):
+        self.motor_connected = True
+        self._window.set_motor_connected()
+
+    @sio.event
+    def on_motor_disconnected(self, data):
+        self.motor_connected = False
+        self._window.set_motor_disabled()
+
+    @sio.event
+    def on_slider_settings_set(self, data):
+        self._window.set_slider_info(data)
+
+    @sio.event
+    def on_slider_started(self, data):
+        self._window.slider_started()
+
+    @sio.event
+    def on_slider_finished(self, data):
+        self._window.slider_finished()
 
 
 if __name__ == "__main__":

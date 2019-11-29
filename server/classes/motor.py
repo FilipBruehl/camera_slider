@@ -21,10 +21,10 @@ class StepMotor:
         [1, 0, 0, 1]
     ]
 
-    def __init__(self, pi):
-        if not isinstance(pi, pigpio.pi):
-            raise TypeError("Daemon not started")
-        self.pi = pi
+    def __init__(self):
+        # if not isinstance(pi, pigpio.pi):
+        #     raise TypeError("Daemon not started")
+        self.pi = pigpio.pi()
         for pin in self.output_pins:
             self.pi.write(pin, pigpio.OUTPUT)
         for pin in self.step_pins:
@@ -60,8 +60,9 @@ if __name__ == "__main__":
     system("sudo systemctl start pigpiod")
     print("Daemon started")
 
-    pi = pigpio.pi()
-    motor = StepMotor(pi)
+    # pi = pigpio.pi()
+    # motor = StepMotor(pi)
+    motor = StepMotor()
     motor.set_frequence(500)
     print("Rotating clockwise")
     for _ in range(1315):
