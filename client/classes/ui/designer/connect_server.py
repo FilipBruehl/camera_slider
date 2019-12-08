@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'connect_server.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.2
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -21,7 +21,7 @@ class Ui_Dialog(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(18)
         Dialog.setFont(font)
-        Dialog.setStyleSheet("background-color: #fff;")
+        Dialog.setStyleSheet("background-color: #c2c2c2;")
         self.verticalLayoutWidget = QtWidgets.QWidget(Dialog)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 451, 161))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
@@ -48,31 +48,31 @@ class Ui_Dialog(object):
         self.lineEdit_ip.setMinimumSize(QtCore.QSize(320, 40))
         self.lineEdit_ip.setMaximumSize(QtCore.QSize(320, 40))
         palette = QtGui.QPalette()
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush = QtGui.QBrush(QtGui.QColor(194, 194, 194))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush = QtGui.QBrush(QtGui.QColor(194, 194, 194))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush = QtGui.QBrush(QtGui.QColor(194, 194, 194))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Active, QtGui.QPalette.Window, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush = QtGui.QBrush(QtGui.QColor(194, 194, 194))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush = QtGui.QBrush(QtGui.QColor(194, 194, 194))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush = QtGui.QBrush(QtGui.QColor(194, 194, 194))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Inactive, QtGui.QPalette.Window, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush = QtGui.QBrush(QtGui.QColor(194, 194, 194))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Button, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush = QtGui.QBrush(QtGui.QColor(194, 194, 194))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Base, brush)
-        brush = QtGui.QBrush(QtGui.QColor(255, 255, 255))
+        brush = QtGui.QBrush(QtGui.QColor(194, 194, 194))
         brush.setStyle(QtCore.Qt.SolidPattern)
         palette.setBrush(QtGui.QPalette.Disabled, QtGui.QPalette.Window, brush)
         self.lineEdit_ip.setPalette(palette)
@@ -80,10 +80,7 @@ class Ui_Dialog(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(18)
         self.lineEdit_ip.setFont(font)
-        self.lineEdit_ip.setStyleSheet("border-radius: 5px;\n"
-"border-width: 2px;\n"
-"border-color: rgb(0, 0, 0);\n"
-"border-style: solid;\n"
+        self.lineEdit_ip.setStyleSheet("\n"
 "")
         self.lineEdit_ip.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_ip.setObjectName("lineEdit_ip")
@@ -103,10 +100,7 @@ class Ui_Dialog(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(18)
         self.pushButton_ok.setFont(font)
-        self.pushButton_ok.setStyleSheet("border-radius: 5px;\n"
-"border-width: 2px;\n"
-"border-color: rgb(0, 0, 0);\n"
-"border-style: solid;")
+        self.pushButton_ok.setStyleSheet("")
         self.pushButton_ok.setObjectName("pushButton_ok")
         self.horizontalLayout.addWidget(self.pushButton_ok, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)
         self.verticalLayout.addLayout(self.horizontalLayout)

@@ -1,10 +1,9 @@
 from classes.Observer import Observer, Subject
 from typing import List
-from interface import implements
 
 
 # Implementation des Subjectes des ObserverPatterns, folgt dem Singleton Pattern
-class DataContainer(implements(Subject)):
+class DataContainer(Subject):
     _instance = None
 
     def __init__(self):

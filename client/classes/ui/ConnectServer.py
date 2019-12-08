@@ -1,6 +1,7 @@
 from ipaddress import ip_address
 from PyQt5.QtWidgets import QDialog
 from classes.ui.designer.connect_server import Ui_Dialog
+from classes.Styles import ConnectServerStyles
 
 
 class ConnectServer(QDialog):
@@ -8,6 +9,8 @@ class ConnectServer(QDialog):
         super().__init__()
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
+        self.ui.pushButton_ok.setStyleSheet(ConnectServerStyles.button_style().toString())
+        self.ui.lineEdit_ip.setStyleSheet(ConnectServerStyles.line_edit_style().toString())
         self.ui.pushButton_ok.clicked.connect(self.terminate)
         self.ui.lineEdit_ip.textEdited.connect(self.check_input)
 
@@ -16,15 +19,16 @@ class ConnectServer(QDialog):
             self.close()
         else:
             self.ui.pushButton_ok.setDisabled(True)
-            self.ui.lineEdit_ip.setStyleSheet("border-radius: 5px; border-width: 2px; border-color: #DB2828; border-style: solid;")
+            self.ui.lineEdit_ip.setStyleSheet(ConnectServerStyles.line_edit_style().toString())
 
     def check_input(self, input):
         try:
             ip_address(input)
-            self.ui.lineEdit_ip.setStyleSheet("border-radius: 5px; border-width: 2px; border-color: green; border-style: solid;")
+            self.ui.lineEdit_ip.setStyleSheet(ConnectServerStyles.line_edit_style(True).toString())
             self.ui.pushButton_ok.setEnabled(True)
         except:
-            self.ui.lineEdit_ip.setStyleSheet("border-radius: 5px; border-width: 2px; border-color: #DB2828; border-style: solid;")
+            self.ui.pushButton_ok.setDisabled(True)
+            self.ui.lineEdit_ip.setStyleSheet(ConnectServerStyles.line_edit_style().toString())
 
     @staticmethod
     def get_ip():
