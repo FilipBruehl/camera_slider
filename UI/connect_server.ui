@@ -41,7 +41,7 @@
    <string>Mit einem Server verbinden</string>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #fff;</string>
+   <string notr="true">background-color: #c2c2c2;</string>
   </property>
   <widget class="QWidget" name="verticalLayoutWidget">
    <property name="geometry">
@@ -100,27 +100,27 @@
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>194</red>
+            <green>194</green>
+            <blue>194</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>194</red>
+            <green>194</green>
+            <blue>194</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>194</red>
+            <green>194</green>
+            <blue>194</blue>
            </color>
           </brush>
          </colorrole>
@@ -129,27 +129,27 @@
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>194</red>
+            <green>194</green>
+            <blue>194</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>194</red>
+            <green>194</green>
+            <blue>194</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>194</red>
+            <green>194</green>
+            <blue>194</blue>
            </color>
           </brush>
          </colorrole>
@@ -158,27 +158,27 @@
          <colorrole role="Button">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>194</red>
+            <green>194</green>
+            <blue>194</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Base">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>194</red>
+            <green>194</green>
+            <blue>194</blue>
            </color>
           </brush>
          </colorrole>
          <colorrole role="Window">
           <brush brushstyle="SolidPattern">
            <color alpha="255">
-            <red>255</red>
-            <green>255</green>
-            <blue>255</blue>
+            <red>194</red>
+            <green>194</green>
+            <blue>194</blue>
            </color>
           </brush>
          </colorrole>
@@ -192,10 +192,7 @@
        </font>
       </property>
       <property name="styleSheet">
-       <string notr="true">border-radius: 5px;
-border-width: 2px;
-border-color: rgb(0, 0, 0);
-border-style: solid;
+       <string notr="true">
 </string>
       </property>
       <property name="alignment">
@@ -238,10 +235,7 @@ border-style: solid;
          </font>
         </property>
         <property name="styleSheet">
-         <string notr="true">border-radius: 5px;
-border-width: 2px;
-border-color: rgb(0, 0, 0);
-border-style: solid;</string>
+         <string notr="true"/>
         </property>
         <property name="text">
          <string>Verbinden</string>

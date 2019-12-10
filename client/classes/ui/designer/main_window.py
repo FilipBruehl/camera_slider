@@ -2,7 +2,7 @@
 
 # Form implementation generated from reading ui file 'main_window.ui'
 #
-# Created by: PyQt5 UI code generator 5.13.2
+# Created by: PyQt5 UI code generator 5.13.0
 #
 # WARNING! All changes made in this file will be lost!
 
@@ -21,7 +21,7 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         MainWindow.setFont(font)
         MainWindow.setAutoFillBackground(False)
-        MainWindow.setStyleSheet("background-color: #fff;")
+        MainWindow.setStyleSheet("background-color: #c2c2c2;")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         font = QtGui.QFont()
         font.setFamily("Bahnschrift")
@@ -216,11 +216,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(10)
         self.groupBox_info_server.setFont(font)
-        self.groupBox_info_server.setStyleSheet("border-color: #000;\n"
-"border-radius: 5px;\n"
-"border-style: solid;\n"
-"border-width: 2px;\n"
-"")
+        self.groupBox_info_server.setStyleSheet("")
         self.groupBox_info_server.setAlignment(QtCore.Qt.AlignCenter)
         self.groupBox_info_server.setObjectName("groupBox_info_server")
         self.label_info_server = QtWidgets.QLabel(self.groupBox_info_server)
@@ -229,7 +225,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_server.setFont(font)
-        self.label_info_server.setStyleSheet("border: none;")
+        self.label_info_server.setStyleSheet("")
         self.label_info_server.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_server.setObjectName("label_info_server")
         self.label_info_server_ip = QtWidgets.QLabel(self.groupBox_info_server)
@@ -238,8 +234,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_server_ip.setFont(font)
-        self.label_info_server_ip.setStyleSheet("color: #DB2828;\n"
-"border: none;")
+        self.label_info_server_ip.setStyleSheet("")
         self.label_info_server_ip.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_server_ip.setObjectName("label_info_server_ip")
         self.groupBox_info_kamera = QtWidgets.QGroupBox(self.groupBox_info)

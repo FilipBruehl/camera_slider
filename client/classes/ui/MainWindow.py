@@ -1,6 +1,7 @@
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from classes.ui.designer.main_window import Ui_MainWindow
+from styles.Styles import MainWindowStyles
 from classes.ui.ConnectCamera import ConnectCamera
 from classes.DataContainer import DataContainer
 
@@ -22,6 +23,10 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
+        self.ui.groupBox_info.setStyleSheet(MainWindowStyles.main_window_information_style().toString())
+        self.ui.label_info_server_ip.setObjectName("serverip")
+        self.ui.input_info_camera_name.setObjectName("cameraname")
+        self.ui.menubar.setStyleSheet(MainWindowStyles.main_window_menu_style().toString())
         self.ui.actionConnect.triggered.connect(self.connect_server_signal)
         self.ui.actionDisconnect.triggered.connect(self.disconnect_server_signal)
         self.ui.actionConnectCamera.triggered.connect(self.connect_camera_signal)
@@ -48,7 +53,9 @@ class MainWindow(QMainWindow):
 
     def set_connected(self, ip):
         self.ui.label_info_server_ip.setText(ip)
-        self.ui.label_info_server_ip.setStyleSheet("color: green; border: none;")
+        self.ui.label_info_server_ip.setProperty("connected", True)
+        self.ui.label_info_server_ip.style().unpolish(self.ui.label_info_server_ip)
+        self.ui.label_info_server_ip.style().polish(self.ui.label_info_server_ip)
         self.ui.label_info_server_ip.update()
         self.ui.actionConnect.setDisabled(True)
         self.ui.actionClose.setDisabled(True)
@@ -61,7 +68,9 @@ class MainWindow(QMainWindow):
 
     def set_not_connected(self):
         self.ui.label_info_server_ip.setText("Nicht verbunden")
-        self.ui.label_info_server_ip.setStyleSheet("color: #DB2828; border: none;")
+        self.ui.label_info_server_ip.setProperty("connected", False)
+        self.ui.label_info_server_ip.style().unpolish(self.ui.label_info_server_ip)
+        self.ui.label_info_server_ip.style().polish(self.ui.label_info_server_ip)
         self.ui.label_info_server_ip.update()
         self.ui.actionConnect.setEnabled(True)
         self.ui.actionClose.setEnabled(True)
@@ -84,7 +93,9 @@ class MainWindow(QMainWindow):
         self.ui.actionDisconnectCamera.setEnabled(True)
         self.ui.actionDisconnect.setDisabled(True)
         self.ui.input_info_camera_name.setText(camera_info['name'])
-        self.ui.input_info_camera_name.setStyleSheet("color: green; border: none;")
+        self.ui.input_info_camera_name.setProperty("connected", True)
+        self.ui.input_info_camera_name.style().unpolish(self.ui.input_info_camera_name)
+        self.ui.input_info_camera_name.style().polish(self.ui.input_info_camera_name)
         self.ui.input_info_camera_name.update()
 
         self.ui.label_info_camera_akku.setEnabled(True)
@@ -120,7 +131,9 @@ class MainWindow(QMainWindow):
         if not self.ui.actionDisconnectCamera.isEnabled() and not self.ui.actionDisconnectMotor.isEnabled():
             self.ui.actionDisconnect.setEnabled(True)
         self.ui.input_info_camera_name.setText("Nicht verbunden")
-        self.ui.input_info_camera_name.setStyleSheet("color: #DB2828; border: none;")
+        self.ui.input_info_camera_name.setProperty("connected", False)
+        self.ui.input_info_camera_name.style().unpolish(self.ui.input_info_camera_name)
+        self.ui.input_info_camera_name.style().polish(self.ui.input_info_camera_name)
         self.ui.input_info_camera_name.update()
 
         self.ui.label_info_camera_akku.setDisabled(True)
