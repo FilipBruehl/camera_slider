@@ -7,4 +7,5 @@ class Colors:
     COLOR_WHITE = "#fff"
     COLOR_BLACK = "#000"
 
+    DISABLED = "gray"
     TRANSPARENT = "transparent"
