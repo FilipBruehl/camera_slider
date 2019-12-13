@@ -2,6 +2,7 @@ import pigpio
 from time import sleep
 from collections import deque
 from os import system
+from classes.pins import Pins
 
 
 class StepMotor:
@@ -12,24 +13,24 @@ class StepMotor:
     # s/rotation = 4 cm
     # full sequence = 1315 steps = 6.575 rotations
 
-    output_pins = [25, 17]
-    step_pins = [24, 23, 27, 22]
-    step_sequene = [
-        [1, 1, 0, 0],
-        [0, 1, 1, 0],
-        [0, 0, 1, 1],
-        [1, 0, 0, 1]
-    ]
+    # output_pins = [17, 25]
+    # step_pins = [27, 22, 23, 24]
+    # step_sequene = [
+    #     [1, 1, 0, 0],
+    #     [0, 1, 1, 0],
+    #     [0, 0, 1, 1],
+    #     [1, 0, 0, 1]
+    # ]
 
     def __init__(self):
         # if not isinstance(pi, pigpio.pi):
         #     raise TypeError("Daemon not started")
         self.pi = pigpio.pi()
-        for pin in self.output_pins:
+        for pin in Pins.Motor.OUTPUT:
             self.pi.write(pin, pigpio.OUTPUT)
-        for pin in self.step_pins:
+        for pin in Pins.Motor.STEPS:
             self.pi.set_mode(pin, pigpio.OUTPUT)
-        self.deque = deque(self.step_sequene)
+        self.deque = deque(Pins.Motor.SEQUENCE)
         self.__delay = None
 
     def set_frequence(self, freq):
@@ -45,12 +46,12 @@ class StepMotor:
         self.step(self.deque[0])
 
     def step(self, step):
-        for index, pin in enumerate(self.step_pins):
+        for index, pin in enumerate(Pins.Motor.STEPS):
             self.pi.write(pin, step[index])
         sleep(self.__delay)
 
     def disable(self):
-        for pin in self.step_pins:
+        for pin in Pins.Motor.STEPS:
             self.pi.write(pin, 0)
 
 
@@ -64,11 +65,11 @@ if __name__ == "__main__":
     # motor = StepMotor(pi)
     motor = StepMotor()
     motor.set_frequence(500)
-    print("Rotating clockwise")
+    # print("Rotating clockwise")
+    # for _ in range(1315):
+    #     motor.rotate_clockwise()
+    print("Rotating counterclockwise")
     for _ in range(1315):
-        motor.rotate_clockwise()
-    # print("Rotating counterclockwise")
-    # for _ in range(2048):
-    #     motor.rotate_counterclockwise()
+        motor.rotate_counterclockwise()
     motor.disable()
     print("Finished")
