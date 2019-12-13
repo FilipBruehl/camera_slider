@@ -21,7 +21,48 @@ class Ui_Dialog(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(18)
         Dialog.setFont(font)
-        Dialog.setStyleSheet("background-color: #c2c2c2;")
+        Dialog.setStyleSheet("QDialog {\n"
+"    background-color: #c2c2c2;\n"
+"}\n"
+"\n"
+"QPushButton {\n"
+"    background-color: transparent;\n"
+"    border-width: 2px;\n"
+"    border-style: solid;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QPushButton:disabled {\n"
+"    color: #DB2828;\n"
+"    border-color: #DB2828;\n"
+"}\n"
+"\n"
+"QPushButton:enabled {\n"
+"    color: #00c853;\n"
+"    background-color: #f5f5f5;\n"
+"    border-color: #f5f5f5;\n"
+"}\n"
+"\n"
+"QLineEdit {\n"
+"    background-color: #f5f5f5;\n"
+"    border: 2px solid #000;\n"
+"    border-radius: 5px;\n"
+"    color: #000;\n"
+"}\n"
+"\n"
+"QLineEdit[valid=\"true\"] {\n"
+"    background-color: #f5f5f5;\n"
+"    border: 2px solid #00c853;\n"
+"    border-radius: 5px;\n"
+"    color: #00c853;\n"
+"}\n"
+"\n"
+"QLineEdit[valid=\"false\"] {\n"
+"    background-color: #f5f5f5;\n"
+"    border: 2px solid #DB2828;\n"
+"    border-radius: 5px;\n"
+"    color: #DB2828;\n"
+"}")
         self.verticalLayoutWidget = QtWidgets.QWidget(Dialog)
         self.verticalLayoutWidget.setGeometry(QtCore.QRect(0, 0, 451, 161))
         self.verticalLayoutWidget.setObjectName("verticalLayoutWidget")
@@ -80,8 +121,7 @@ class Ui_Dialog(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(18)
         self.lineEdit_ip.setFont(font)
-        self.lineEdit_ip.setStyleSheet("\n"
-"")
+        self.lineEdit_ip.setStyleSheet("")
         self.lineEdit_ip.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_ip.setObjectName("lineEdit_ip")
         self.verticalLayout.addWidget(self.lineEdit_ip, 0, QtCore.Qt.AlignHCenter|QtCore.Qt.AlignVCenter)

@@ -21,7 +21,60 @@ class Ui_MainWindow(object):
         font.setPointSize(14)
         MainWindow.setFont(font)
         MainWindow.setAutoFillBackground(False)
-        MainWindow.setStyleSheet("background-color: #c2c2c2;")
+        MainWindow.setStyleSheet("QMainWindow, QMenuBar, QMenu {    \n"
+"    background-color: #c2c2c2;\n"
+"}\n"
+"\n"
+"QMenu::item:enabled:selected {\n"
+"    background-color: #f5f5f5;\n"
+"    color: #000;\n"
+"}\n"
+"\n"
+"QMenu::item:enabled {\n"
+"    color: #000;\n"
+"}\n"
+"\n"
+"QMenu::item:disabled {\n"
+"    color: gray;\n"
+"}\n"
+"\n"
+"QGroupBox {\n"
+"    background-color: transparent;\n"
+"    border: 2px solid #000;\n"
+"    border-radius: 5px;\n"
+"}\n"
+"\n"
+"QLabel {\n"
+"    background-color: transparent;\n"
+"    border: none;\n"
+"    color: #000;\n"
+"}\n"
+"\n"
+"QLabel:disabled {\n"
+"    background-color: transparent;\n"
+"    border: none;\n"
+"    color: gray;\n"
+"}\n"
+"\n"
+"QLabel:enabled {\n"
+"    background-color: transparent;\n"
+"    border: none;\n"
+"    color: #000;\n"
+"}\n"
+"\n"
+"QLabel#serverip, QLabel#cameraname {\n"
+"    background-color: transparent;\n"
+"    border: none;\n"
+"    color: #DB2828;\n"
+"}\n"
+"\n"
+"QLabel#serverip[connected=\"false\"], QLabel#cameraname[connected=\"false\"] {\n"
+"    color: #DB2828;\n"
+"}\n"
+"\n"
+"QLabel#serverip[connected=\"true\"], QLabel#cameraname[connected=\"true\"] {\n"
+"    color: #00c853;\n"
+"}")
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         font = QtGui.QFont()
         font.setFamily("Bahnschrift")
@@ -52,6 +105,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(10)
         self.groupBox_steuerung_slider.setFont(font)
+        self.groupBox_steuerung_slider.setStyleSheet("")
         self.groupBox_steuerung_slider.setAlignment(QtCore.Qt.AlignCenter)
         self.groupBox_steuerung_slider.setObjectName("groupBox_steuerung_slider")
         self.pushButton_steuerung_slider = QtWidgets.QPushButton(self.groupBox_steuerung_slider)
@@ -83,6 +137,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(10)
         self.groupBox_settings_slider.setFont(font)
+        self.groupBox_settings_slider.setStyleSheet("")
         self.groupBox_settings_slider.setAlignment(QtCore.Qt.AlignCenter)
         self.groupBox_settings_slider.setObjectName("groupBox_settings_slider")
         self.label_settings_slider_start = QtWidgets.QLabel(self.groupBox_settings_slider)
@@ -91,6 +146,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_settings_slider_start.setFont(font)
+        self.label_settings_slider_start.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_settings_slider_start.setAlignment(QtCore.Qt.AlignCenter)
         self.label_settings_slider_start.setObjectName("label_settings_slider_start")
         self.comboBox_settings_slider_start = QtWidgets.QComboBox(self.groupBox_settings_slider)
@@ -99,6 +156,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.comboBox_settings_slider_start.setFont(font)
+        self.comboBox_settings_slider_start.setStyleSheet("")
         self.comboBox_settings_slider_start.setEditable(False)
         self.comboBox_settings_slider_start.setObjectName("comboBox_settings_slider_start")
         self.comboBox_settings_slider_start.addItem("")
@@ -110,6 +168,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_settings_slider_richtung.setFont(font)
+        self.label_settings_slider_richtung.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_settings_slider_richtung.setAlignment(QtCore.Qt.AlignCenter)
         self.label_settings_slider_richtung.setObjectName("label_settings_slider_richtung")
         self.comboBox_settings_slider_richtung = QtWidgets.QComboBox(self.groupBox_settings_slider)
@@ -118,6 +178,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.comboBox_settings_slider_richtung.setFont(font)
+        self.comboBox_settings_slider_richtung.setStyleSheet("")
         self.comboBox_settings_slider_richtung.setEditable(False)
         self.comboBox_settings_slider_richtung.setObjectName("comboBox_settings_slider_richtung")
         self.comboBox_settings_slider_richtung.addItem("")
@@ -128,6 +189,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_settings_slider_steps.setFont(font)
+        self.label_settings_slider_steps.setStyleSheet("")
         self.label_settings_slider_steps.setAlignment(QtCore.Qt.AlignCenter)
         self.label_settings_slider_steps.setObjectName("label_settings_slider_steps")
         self.lineEdit_settings_slider_steps = QtWidgets.QLineEdit(self.groupBox_settings_slider)
@@ -136,6 +198,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(18)
         self.lineEdit_settings_slider_steps.setFont(font)
+        self.lineEdit_settings_slider_steps.setStyleSheet("")
         self.lineEdit_settings_slider_steps.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_settings_slider_steps.setObjectName("lineEdit_settings_slider_steps")
         self.label_settings_slider_frequenz = QtWidgets.QLabel(self.groupBox_settings_slider)
@@ -144,6 +207,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_settings_slider_frequenz.setFont(font)
+        self.label_settings_slider_frequenz.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_settings_slider_frequenz.setAlignment(QtCore.Qt.AlignCenter)
         self.label_settings_slider_frequenz.setObjectName("label_settings_slider_frequenz")
         self.lineEdit_settings_slider_frequenz = QtWidgets.QLineEdit(self.groupBox_settings_slider)
@@ -152,6 +217,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(18)
         self.lineEdit_settings_slider_frequenz.setFont(font)
+        self.lineEdit_settings_slider_frequenz.setStyleSheet("")
         self.lineEdit_settings_slider_frequenz.setAlignment(QtCore.Qt.AlignCenter)
         self.lineEdit_settings_slider_frequenz.setObjectName("lineEdit_settings_slider_frequenz")
         self.pushButton_settings_slider = QtWidgets.QPushButton(self.groupBox_settings_slider)
@@ -161,6 +227,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(18)
         self.pushButton_settings_slider.setFont(font)
+        self.pushButton_settings_slider.setStyleSheet("")
         self.pushButton_settings_slider.setFlat(False)
         self.pushButton_settings_slider.setObjectName("pushButton_settings_slider")
         self.verticalLayout_center.addWidget(self.groupBox_settings)
@@ -192,6 +259,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(10)
         self.groupBox_info_server.setFont(font)
+        self.groupBox_info_server.setStyleSheet("")
         self.groupBox_info_server.setAlignment(QtCore.Qt.AlignCenter)
         self.groupBox_info_server.setObjectName("groupBox_info_server")
         self.label_info_server = QtWidgets.QLabel(self.groupBox_info_server)
@@ -200,6 +268,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_server.setFont(font)
+        self.label_info_server.setStyleSheet("")
         self.label_info_server.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_server.setObjectName("label_info_server")
         self.label_info_server_ip = QtWidgets.QLabel(self.groupBox_info_server)
@@ -208,6 +277,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_server_ip.setFont(font)
+        self.label_info_server_ip.setStyleSheet("")
         self.label_info_server_ip.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_server_ip.setObjectName("label_info_server_ip")
         self.groupBox_info_kamera = QtWidgets.QGroupBox(self.groupBox_info)
@@ -218,6 +288,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(10)
         self.groupBox_info_kamera.setFont(font)
+        self.groupBox_info_kamera.setStyleSheet("")
         self.groupBox_info_kamera.setAlignment(QtCore.Qt.AlignCenter)
         self.groupBox_info_kamera.setObjectName("groupBox_info_kamera")
         self.label_info_camera_name = QtWidgets.QLabel(self.groupBox_info_kamera)
@@ -226,6 +297,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_camera_name.setFont(font)
+        self.label_info_camera_name.setStyleSheet("")
         self.label_info_camera_name.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_camera_name.setObjectName("label_info_camera_name")
         self.input_info_camera_name = QtWidgets.QLabel(self.groupBox_info_kamera)
@@ -234,6 +306,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_camera_name.setFont(font)
+        self.input_info_camera_name.setStyleSheet("")
         self.input_info_camera_name.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_camera_name.setObjectName("input_info_camera_name")
         self.label_info_camera_akku = QtWidgets.QLabel(self.groupBox_info_kamera)
@@ -243,6 +316,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_camera_akku.setFont(font)
+        self.label_info_camera_akku.setStyleSheet("")
         self.label_info_camera_akku.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_camera_akku.setObjectName("label_info_camera_akku")
         self.label_info_camera_blende = QtWidgets.QLabel(self.groupBox_info_kamera)
@@ -252,6 +326,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_camera_blende.setFont(font)
+        self.label_info_camera_blende.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_info_camera_blende.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_camera_blende.setObjectName("label_info_camera_blende")
         self.label_info_camera_shutter = QtWidgets.QLabel(self.groupBox_info_kamera)
@@ -261,6 +337,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_camera_shutter.setFont(font)
+        self.label_info_camera_shutter.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_info_camera_shutter.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_camera_shutter.setObjectName("label_info_camera_shutter")
         self.label_info_camera_iso = QtWidgets.QLabel(self.groupBox_info_kamera)
@@ -270,6 +348,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_camera_iso.setFont(font)
+        self.label_info_camera_iso.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_info_camera_iso.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_camera_iso.setObjectName("label_info_camera_iso")
         self.label_info_camera_fokus = QtWidgets.QLabel(self.groupBox_info_kamera)
@@ -279,6 +359,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_camera_fokus.setFont(font)
+        self.label_info_camera_fokus.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_info_camera_fokus.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_camera_fokus.setObjectName("label_info_camera_fokus")
         self.label_info_camera_format = QtWidgets.QLabel(self.groupBox_info_kamera)
@@ -288,6 +370,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_camera_format.setFont(font)
+        self.label_info_camera_format.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_info_camera_format.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_camera_format.setObjectName("label_info_camera_format")
         self.input_info_camera_akku = QtWidgets.QLabel(self.groupBox_info_kamera)
@@ -297,6 +381,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_camera_akku.setFont(font)
+        self.input_info_camera_akku.setStyleSheet("border: none;")
         self.input_info_camera_akku.setText("")
         self.input_info_camera_akku.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_camera_akku.setObjectName("input_info_camera_akku")
@@ -307,6 +392,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_camera_blende.setFont(font)
+        self.input_info_camera_blende.setStyleSheet("border: none;")
         self.input_info_camera_blende.setText("")
         self.input_info_camera_blende.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_camera_blende.setObjectName("input_info_camera_blende")
@@ -317,6 +403,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_camera_shutter.setFont(font)
+        self.input_info_camera_shutter.setStyleSheet("border: none;")
         self.input_info_camera_shutter.setText("")
         self.input_info_camera_shutter.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_camera_shutter.setObjectName("input_info_camera_shutter")
@@ -327,6 +414,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_camera_iso.setFont(font)
+        self.input_info_camera_iso.setStyleSheet("border: none;")
         self.input_info_camera_iso.setText("")
         self.input_info_camera_iso.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_camera_iso.setObjectName("input_info_camera_iso")
@@ -337,6 +425,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_camera_fokus.setFont(font)
+        self.input_info_camera_fokus.setStyleSheet("")
         self.input_info_camera_fokus.setText("")
         self.input_info_camera_fokus.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_camera_fokus.setObjectName("input_info_camera_fokus")
@@ -347,6 +436,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_camera_format.setFont(font)
+        self.input_info_camera_format.setStyleSheet("border: none;")
         self.input_info_camera_format.setText("")
         self.input_info_camera_format.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_camera_format.setObjectName("input_info_camera_format")
@@ -359,6 +449,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(10)
         self.groupBox_info_slider.setFont(font)
+        self.groupBox_info_slider.setStyleSheet("")
         self.groupBox_info_slider.setAlignment(QtCore.Qt.AlignCenter)
         self.groupBox_info_slider.setObjectName("groupBox_info_slider")
         self.label_info_slider_links = QtWidgets.QLabel(self.groupBox_info_slider)
@@ -368,6 +459,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_slider_links.setFont(font)
+        self.label_info_slider_links.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_info_slider_links.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_slider_links.setObjectName("label_info_slider_links")
         self.label_info_slider_rechts = QtWidgets.QLabel(self.groupBox_info_slider)
@@ -377,6 +470,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_slider_rechts.setFont(font)
+        self.label_info_slider_rechts.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_info_slider_rechts.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_slider_rechts.setObjectName("label_info_slider_rechts")
         self.input_info_slider_links = QtWidgets.QLabel(self.groupBox_info_slider)
@@ -386,6 +481,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_slider_links.setFont(font)
+        self.input_info_slider_links.setStyleSheet("")
         self.input_info_slider_links.setText("")
         self.input_info_slider_links.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_slider_links.setObjectName("input_info_slider_links")
@@ -396,6 +492,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_slider_rechts.setFont(font)
+        self.input_info_slider_rechts.setStyleSheet("border: none;")
         self.input_info_slider_rechts.setText("")
         self.input_info_slider_rechts.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_slider_rechts.setObjectName("input_info_slider_rechts")
@@ -406,6 +503,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_slider_frequenz.setFont(font)
+        self.label_info_slider_frequenz.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_info_slider_frequenz.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_slider_frequenz.setObjectName("label_info_slider_frequenz")
         self.input_info_slider_status = QtWidgets.QLabel(self.groupBox_info_slider)
@@ -415,6 +514,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_slider_status.setFont(font)
+        self.input_info_slider_status.setStyleSheet("border: none;")
         self.input_info_slider_status.setText("")
         self.input_info_slider_status.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_slider_status.setObjectName("input_info_slider_status")
@@ -425,6 +525,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_slider_status.setFont(font)
+        self.label_info_slider_status.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_info_slider_status.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_slider_status.setObjectName("label_info_slider_status")
         self.input_info_slider_frequenz = QtWidgets.QLabel(self.groupBox_info_slider)
@@ -434,6 +536,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_slider_frequenz.setFont(font)
+        self.input_info_slider_frequenz.setStyleSheet("border: none;")
         self.input_info_slider_frequenz.setText("")
         self.input_info_slider_frequenz.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_slider_frequenz.setObjectName("input_info_slider_frequenz")
@@ -444,6 +547,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_slider_richtung.setFont(font)
+        self.label_info_slider_richtung.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_info_slider_richtung.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_slider_richtung.setObjectName("label_info_slider_richtung")
         self.input_info_slider_richtung = QtWidgets.QLabel(self.groupBox_info_slider)
@@ -453,6 +558,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_slider_richtung.setFont(font)
+        self.input_info_slider_richtung.setStyleSheet("border: none;")
         self.input_info_slider_richtung.setText("")
         self.input_info_slider_richtung.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_slider_richtung.setObjectName("input_info_slider_richtung")
@@ -462,6 +568,8 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.label_info_slider_steps.setFont(font)
+        self.label_info_slider_steps.setStyleSheet("border: none;\n"
+"background-color: transparent;")
         self.label_info_slider_steps.setAlignment(QtCore.Qt.AlignCenter)
         self.label_info_slider_steps.setObjectName("label_info_slider_steps")
         self.input_info_slider_steps = QtWidgets.QLabel(self.groupBox_info_slider)
@@ -471,6 +579,7 @@ class Ui_MainWindow(object):
         font.setFamily("Bahnschrift")
         font.setPointSize(14)
         self.input_info_slider_steps.setFont(font)
+        self.input_info_slider_steps.setStyleSheet("border: none;")
         self.input_info_slider_steps.setText("")
         self.input_info_slider_steps.setAlignment(QtCore.Qt.AlignCenter)
         self.input_info_slider_steps.setObjectName("input_info_slider_steps")

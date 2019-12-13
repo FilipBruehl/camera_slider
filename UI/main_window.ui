@@ -35,7 +35,60 @@
    <bool>false</bool>
   </property>
   <property name="styleSheet">
-   <string notr="true">background-color: #c2c2c2;</string>
+   <string notr="true">QMainWindow, QMenuBar, QMenu {	
+	background-color: #c2c2c2;
+}
+
+QMenu::item:enabled:selected {
+	background-color: #f5f5f5;
+	color: #000;
+}
+
+QMenu::item:enabled {
+	color: #000;
+}
+
+QMenu::item:disabled {
+	color: gray;
+}
+
+QGroupBox {
+	background-color: transparent;
+	border: 2px solid #000;
+	border-radius: 5px;
+}
+
+QLabel {
+	background-color: transparent;
+	border: none;
+	color: #000;
+}
+
+QLabel:disabled {
+	background-color: transparent;
+	border: none;
+	color: gray;
+}
+
+QLabel:enabled {
+	background-color: transparent;
+	border: none;
+	color: #000;
+}
+
+QLabel#serverip, QLabel#cameraname {
+	background-color: transparent;
+	border: none;
+	color: #DB2828;
+}
+
+QLabel#serverip[connected=&quot;false&quot;], QLabel#cameraname[connected=&quot;false&quot;] {
+	color: #DB2828;
+}
+
+QLabel#serverip[connected=&quot;true&quot;], QLabel#cameraname[connected=&quot;true&quot;] {
+	color: #00c853;
+}</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="font">
@@ -166,8 +219,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">
-</string>
+           <string notr="true"/>
           </property>
           <property name="title">
            <string>Slider</string>
