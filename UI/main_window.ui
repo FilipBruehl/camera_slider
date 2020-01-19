@@ -120,7 +120,7 @@ QLabel#serverip[connected=&quot;true&quot;], QLabel#cameraname[connected=&quot;t
           </font>
          </property>
          <property name="title">
-          <string>Einstellungen</string>
+          <string>Steuerung</string>
          </property>
          <property name="alignment">
           <set>Qt::AlignCenter</set>
@@ -172,6 +172,59 @@ QLabel#serverip[connected=&quot;true&quot;], QLabel#cameraname[connected=&quot;t
            </property>
            <property name="text">
             <string>Starten</string>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QGroupBox" name="groupBox_steuerung_kamera">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>100</y>
+            <width>400</width>
+            <height>90</height>
+           </rect>
+          </property>
+          <property name="font">
+           <font>
+            <family>Bahnschrift</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true"/>
+          </property>
+          <property name="title">
+           <string>Slider</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <widget class="QPushButton" name="pushButton_steuerung_kamera">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>125</x>
+             <y>30</y>
+             <width>150</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>18</pointsize>
+            </font>
+           </property>
+           <property name="text">
+            <string>Auslösen</string>
            </property>
            <property name="flat">
             <bool>false</bool>
@@ -374,6 +427,9 @@ background-color: transparent;</string>
            </property>
           </widget>
           <widget class="QLineEdit" name="lineEdit_settings_slider_steps">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="geometry">
             <rect>
              <x>210</x>
@@ -425,6 +481,9 @@ background-color: transparent;</string>
            </property>
           </widget>
           <widget class="QLineEdit" name="lineEdit_settings_slider_frequenz">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="geometry">
             <rect>
              <x>210</x>
@@ -450,6 +509,142 @@ background-color: transparent;</string>
            </property>
           </widget>
           <widget class="QPushButton" name="pushButton_settings_slider">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>125</x>
+             <y>175</y>
+             <width>150</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>18</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Einstellen</string>
+           </property>
+           <property name="flat">
+            <bool>false</bool>
+           </property>
+          </widget>
+         </widget>
+         <widget class="QGroupBox" name="groupBox_settings_kamera">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
+          <property name="geometry">
+           <rect>
+            <x>10</x>
+            <y>100</y>
+            <width>400</width>
+            <height>215</height>
+           </rect>
+          </property>
+          <property name="minimumSize">
+           <size>
+            <width>400</width>
+            <height>215</height>
+           </size>
+          </property>
+          <property name="maximumSize">
+           <size>
+            <width>400</width>
+            <height>215</height>
+           </size>
+          </property>
+          <property name="font">
+           <font>
+            <family>Bahnschrift</family>
+            <pointsize>10</pointsize>
+           </font>
+          </property>
+          <property name="title">
+           <string>Kamera</string>
+          </property>
+          <property name="alignment">
+           <set>Qt::AlignCenter</set>
+          </property>
+          <widget class="QLabel" name="label_settings_kamera_takes">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>15</x>
+             <y>15</y>
+             <width>187</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="minimumSize">
+            <size>
+             <width>187</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>187</width>
+             <height>30</height>
+            </size>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>14</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string>Aufnahmen:</string>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+          </widget>
+          <widget class="QLineEdit" name="lineEdit_settings_kamera_takes">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
+           <property name="geometry">
+            <rect>
+             <x>210</x>
+             <y>15</y>
+             <width>185</width>
+             <height>30</height>
+            </rect>
+           </property>
+           <property name="font">
+            <font>
+             <family>Bahnschrift</family>
+             <pointsize>18</pointsize>
+            </font>
+           </property>
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
+           <property name="text">
+            <string/>
+           </property>
+           <property name="alignment">
+            <set>Qt::AlignCenter</set>
+           </property>
+           <property name="placeholderText">
+            <string>Aufnahmen</string>
+           </property>
+          </widget>
+          <widget class="QPushButton" name="pushButton_settings_kamera">
            <property name="enabled">
             <bool>false</bool>
            </property>
@@ -510,6 +705,9 @@ background-color: transparent;</string>
           <bool>false</bool>
          </property>
          <widget class="QGroupBox" name="groupBox_info_server">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -552,6 +750,9 @@ background-color: transparent;</string>
            <set>Qt::AlignCenter</set>
           </property>
           <widget class="QLabel" name="label_info_server">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="geometry">
             <rect>
              <x>15</x>
@@ -577,6 +778,9 @@ background-color: transparent;</string>
            </property>
           </widget>
           <widget class="QLabel" name="label_info_server_ip">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="geometry">
             <rect>
              <x>210</x>
@@ -603,6 +807,9 @@ background-color: transparent;</string>
           </widget>
          </widget>
          <widget class="QGroupBox" name="groupBox_info_kamera">
+          <property name="enabled">
+           <bool>false</bool>
+          </property>
           <property name="geometry">
            <rect>
             <x>10</x>
@@ -639,6 +846,9 @@ background-color: transparent;</string>
            <set>Qt::AlignCenter</set>
           </property>
           <widget class="QLabel" name="label_info_camera_name">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="geometry">
             <rect>
              <x>15</x>
@@ -664,6 +874,9 @@ background-color: transparent;</string>
            </property>
           </widget>
           <widget class="QLabel" name="input_info_camera_name">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="geometry">
             <rect>
              <x>210</x>
@@ -891,7 +1104,7 @@ background-color: transparent;</string>
           </widget>
           <widget class="QLabel" name="input_info_camera_blende">
            <property name="enabled">
-            <bool>true</bool>
+            <bool>false</bool>
            </property>
            <property name="geometry">
             <rect>
@@ -1355,6 +1568,9 @@ background-color: transparent;</string>
            </property>
           </widget>
           <widget class="QLabel" name="label_info_slider_steps">
+           <property name="enabled">
+            <bool>false</bool>
+           </property>
            <property name="geometry">
             <rect>
              <x>15</x>
@@ -1460,6 +1676,9 @@ background-color: transparent;</string>
     <addaction name="separator"/>
     <addaction name="actionConnectMotor"/>
     <addaction name="actionDisconnectMotor"/>
+    <addaction name="separator"/>
+    <addaction name="actionConnectSensors"/>
+    <addaction name="actionDisconnectSensors"/>
    </widget>
    <widget class="QMenu" name="menuProgramm">
     <property name="title">
@@ -1555,6 +1774,27 @@ background-color: transparent;</string>
    </property>
    <property name="text">
     <string>Motor Verbindung trennen</string>
+   </property>
+  </action>
+  <action name="actionUltraschallsensoren_verbinden">
+   <property name="text">
+    <string>Ultraschallsensoren verbinden</string>
+   </property>
+  </action>
+  <action name="actionConnectSensors">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Sensoren verbinden</string>
+   </property>
+  </action>
+  <action name="actionDisconnectSensors">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
+   <property name="text">
+    <string>Sensoren Verbindung trennen</string>
    </property>
   </action>
  </widget>

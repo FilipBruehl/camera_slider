@@ -33,7 +33,7 @@ class StepMotor:
         self.deque = deque(Pins.Motor.SEQUENCE)
         self.__delay = None
 
-    def set_frequence(self, freq):
+    def set_frequency(self, freq):
         if 0 < freq < 1500:
             self.__delay = 1.0 / freq
 
@@ -64,12 +64,12 @@ if __name__ == "__main__":
     # pi = pigpio.pi()
     # motor = StepMotor(pi)
     motor = StepMotor()
-    motor.set_frequence(500)
-    # print("Rotating clockwise")
-    # for _ in range(1315):
-    #     motor.rotate_clockwise()
-    print("Rotating counterclockwise")
-    for _ in range(1315):
-        motor.rotate_counterclockwise()
+    motor.set_frequency(900)
+    print("Rotating clockwise")
+    for _ in range(1000):
+        motor.rotate_clockwise()
+    # print("Rotating counterclockwise")
+    # for _ in range(500):
+    #     motor.rotate_counterclockwise()
     motor.disable()
     print("Finished")

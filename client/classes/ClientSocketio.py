@@ -35,7 +35,11 @@ class Client(socketio.ClientNamespace):
         self._window.disconnect_camera_signal.connect(self.disconnect_camera)
         self._window.connect_motor_signal.connect(self.connect_motor)
         self._window.disconnect_motor_signal.connect(self.disconnect_motor)
+        self._window.connect_sensors_signal.connect(self.connect_sensors)
+        self._window.disconnect_sensors_signal.connect(self.disconnect_sensors)
         self._window.set_slider_settings_singal.connect(self.set_slider_settings)
+        self._window.set_kamera_settings_signal.connect(self.set_kamera_settings)
+        self._window.take_picture_signal.connect(self.take_picture)
         self._window.start_slider_signal.connect(self.start_slider)
 
     def run(self):
@@ -66,11 +70,23 @@ class Client(socketio.ClientNamespace):
     def disconnect_motor(self):
         self.sio.emit('disconnect_motor')
 
+    def connect_sensors(self):
+        self.sio.emit('connect_sensors')
+
+    def disconnect_sensors(self):
+        self.sio.emit('disconnect_sensors')
+
     def set_slider_settings(self):
         self.sio.emit('set_slider_settings', self._window.get_slider_settings())
 
     def start_slider(self):
         self.sio.emit('start_slider')
+
+    def set_kamera_settings(self):
+        self.sio.emit('set_camera_settings', self._window.get_kamera_settings())
+
+    def take_picture(self):
+        self.sio.emit('take_picture')
 
     @staticmethod
     def get_instance(sio=None, app=None, namespace=None):
@@ -135,6 +151,18 @@ class Client(socketio.ClientNamespace):
     @sio.event
     def on_slider_finished(self, data):
         self._window.slider_finished()
+
+    @sio.event
+    def on_distance(self, data):
+        self._window.set_distance(data)
+
+    @sio.event
+    def on_sensors_connected(self, data):
+        self._window.set_sensors_connected()
+
+    @sio.event
+    def on_sensors_disconnected(self, data):
+        self._window.set_sensors_disconnected()
 
 
 if __name__ == "__main__":

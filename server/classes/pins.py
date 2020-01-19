@@ -1,10 +1,10 @@
 class Pins:
     class Ultrasonic:
-        LEFT_TRIGGER = 26
-        LEFT_ECHO = 19
+        LEFT_TRIGGER = 20
+        LEFT_ECHO = 21
 
-        RIGHT_TRIGGER = 20
-        RIGHT_ECHO = 21
+        RIGHT_TRIGGER = 26
+        RIGHT_ECHO = 19
 
     class Motor:
         OUTPUT = [17, 25]
