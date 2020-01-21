@@ -20,6 +20,7 @@ class MainWindow(QMainWindow):
     set_kamera_settings_signal = pyqtSignal()
     take_picture_signal = pyqtSignal()
     start_slider_signal = pyqtSignal()
+    position_slider_signal = pyqtSignal()
     about_signal = pyqtSignal()
     close_signal = pyqtSignal()
 
@@ -44,6 +45,7 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_settings_kamera.clicked.connect(self.set_kamera_settings_signal)
         self.ui.pushButton_steuerung_kamera.clicked.connect(self.take_picture_signal)
         self.ui.pushButton_steuerung_slider.clicked.connect(self.start_slider_signal)
+        self.ui.pushButton_steuerung_slider_position.clicked.connect(self.position_slider_signal)
         self.ui.actionAbout.triggered.connect(self.about)
         self.ui.actionClose.triggered.connect(self.close)
         self.ui.comboBox_settings_slider_start.currentTextChanged.connect(self.check_slider_settings)
@@ -144,9 +146,39 @@ class MainWindow(QMainWindow):
         self.ui.groupBox_settings_kamera.setEnabled(True)
         self.ui.label_settings_kamera_takes.setEnabled(True)
         self.ui.lineEdit_settings_kamera_takes.setEnabled(True)
+        self.ui.label_settings_kamera_blende.setEnabled(True)
+        self.ui.comboBox_settings_kamera_blende.setEnabled(True)
+        self.ui.label_settings_kamera_shutter.setEnabled(True)
+        self.ui.comboBox_settings_kamera_shutter.setEnabled(True)
+        self.ui.label_settings_kamera_iso.setEnabled(True)
 
         self.ui.groupBox_steuerung_kamera.setEnabled(True)
         self.ui.pushButton_steuerung_kamera.setEnabled(True)
+
+    def set_camera_options(self, data):
+        print(data)
+        self.ui.comboBox_settings_kamera_blende.addItems(data['focal'])
+        self.ui.comboBox_settings_kamera_shutter.addItems(data['shutter'])
+        self.ui.comboBox_settings_kamera_iso.addItems(data['iso'])
+
+        focal_index = self.ui.comboBox_settings_kamera_blende.findText(self.ui.input_info_camera_blende.text())
+        if focal_index >= 0:
+            self.ui.comboBox_settings_kamera_blende.setCurrentIndex(focal_index)
+        shutter_index = self.ui.comboBox_settings_kamera_shutter.findText(self.ui.input_info_camera_shutter.text())
+        if shutter_index >= 0:
+            self.ui.comboBox_settings_kamera_shutter.setCurrentIndex(shutter_index)
+        iso_index = self.ui.comboBox_settings_kamera_iso.findText(self.ui.input_info_camera_iso.text())
+        if iso_index >= 0:
+            self.ui.comboBox_settings_kamera_iso.setCurrentIndex(iso_index)
+
+    def set_camera_values(self, data):
+        self.ui.input_info_camera_akku.setText(data['battery'])
+        self.ui.input_info_camera_blende.setText(data['focal'])
+        self.ui.input_info_camera_shutter.setText(data['shutter'])
+        self.ui.input_info_camera_iso.setText(data['iso'])
+        self.ui.input_info_camera_fokus.setText(data['focus'])
+        self.ui.input_info_camera_format.setText(data['quality'])
+
 
     def set_camera_not_available(self):
         self.ui.input_info_camera_name.setText("Keine Kamera verfügbar")
@@ -264,6 +296,7 @@ class MainWindow(QMainWindow):
         self.ui.lineEdit_settings_slider_frequenz.setDisabled(True)
         self.ui.lineEdit_settings_slider_steps.setDisabled(True)
         self.ui.pushButton_settings_slider.setDisabled(True)
+        self.ui.pushButton_steuerung_slider_position.setDisabled(True)
 
     def check_slider_settings(self, data):
         if self.ui.comboBox_settings_slider_start.currentText() and \
@@ -271,27 +304,36 @@ class MainWindow(QMainWindow):
                 self.ui.lineEdit_settings_slider_steps.text() and \
                 self.ui.lineEdit_settings_slider_frequenz.text():
             self.ui.pushButton_settings_slider.setEnabled(True)
+            self.ui.pushButton_steuerung_slider_position.setEnabled(True)
 
     def get_slider_settings(self):
         return {
             'start': self.ui.comboBox_settings_slider_start.currentText(),
             'direction': self.ui.comboBox_settings_slider_richtung.currentText(),
-            'steps': self.ui.lineEdit_settings_slider_steps.text(),
-            'frequency': self.ui.lineEdit_settings_slider_frequenz.text()
+            'distance': self.ui.lineEdit_settings_slider_steps.text(),
+            'frequency': self.ui.lineEdit_settings_slider_frequenz.text(),
+            'type': 'automatic'
         }
 
+    def get_slider_start(self):
+        return self.ui.comboBox_settings_slider_start.currentText()
+
     def set_slider_info(self, data):
-        if data['running']:
-            self.ui.input_info_slider_status.setText("An")
-            self.ui.input_info_slider_status.setStyleSheet("color: green; border: none;")
-        else:
-            self.ui.input_info_slider_status.setText("Aus")
-            self.ui.input_info_slider_status.setStyleSheet("color: #DB2828; border: none;")
+        # if 'running' in data and data['running']:
+        #     self.ui.input_info_slider_status.setText("An")
+        #     self.ui.input_info_slider_status.setStyleSheet("color: green; border: none;")
+        # else:
+        self.ui.input_info_slider_status.setText("Aus")
+        self.ui.input_info_slider_status.setStyleSheet("color: #DB2828; border: none;")
         self.ui.input_info_slider_frequenz.setText(data['frequency'])
         self.ui.input_info_slider_richtung.setText(data['direction'])
-        self.ui.input_info_slider_steps.setText(data['steps'])
+        if data['type'] == 'automatic':
+            self.ui.input_info_slider_steps.setText(f"{data['distance']} cm")
+        elif data['type'] == 'manual':
+            self.ui.input_info_slider_steps.setText(f"{data['distance']} Schritte")
         self.ui.groupBox_steuerung_slider.setEnabled(True)
         self.ui.pushButton_steuerung_slider.setEnabled(True)
+        print("Button enabled")
 
     def slider_started(self):
         print("Started")
@@ -327,5 +369,8 @@ class MainWindow(QMainWindow):
 
     def get_kamera_settings(self):
         return {
-            'takes': self.ui.lineEdit_settings_kamera_takes.text()
+            'takes': self.ui.lineEdit_settings_kamera_takes.text(),
+            'focal': self.ui.comboBox_settings_kamera_blende.currentText(),
+            'shutter': self.ui.comboBox_settings_kamera_shutter.currentText(),
+            'iso': self.ui.comboBox_settings_kamera_iso.currentText()
         }

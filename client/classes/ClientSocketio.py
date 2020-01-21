@@ -31,14 +31,14 @@ class Client(socketio.ClientNamespace):
     def init_window(self):
         self._window.connect_server_signal.connect(self.start)
         self._window.disconnect_server_signal.connect(self.disconnect)
-        self._window.connect_camera_signal.connect(self.get_available_cameras)
+        self._window.connect_camera_signal.connect(self.connect_camera)
         self._window.disconnect_camera_signal.connect(self.disconnect_camera)
         self._window.connect_motor_signal.connect(self.connect_motor)
         self._window.disconnect_motor_signal.connect(self.disconnect_motor)
         self._window.connect_sensors_signal.connect(self.connect_sensors)
         self._window.disconnect_sensors_signal.connect(self.disconnect_sensors)
         self._window.set_slider_settings_singal.connect(self.set_slider_settings)
-        self._window.set_kamera_settings_signal.connect(self.set_kamera_settings)
+        self._window.set_kamera_settings_signal.connect(self.set_camera_settings)
         self._window.take_picture_signal.connect(self.take_picture)
         self._window.start_slider_signal.connect(self.start_slider)
 
@@ -58,8 +58,11 @@ class Client(socketio.ClientNamespace):
         self.connected = False
         self._window.set_not_connected()
 
-    def get_available_cameras(self):
-        self.sio.emit('get_cameras')
+    def connect_camera(self):
+        self.sio.emit('connect_camera', 0)
+
+    # def get_available_cameras(self):
+    #     self.sio.emit('get_cameras')
 
     def disconnect_camera(self):
         self.sio.emit('disconnect_camera')
@@ -82,7 +85,7 @@ class Client(socketio.ClientNamespace):
     def start_slider(self):
         self.sio.emit('start_slider')
 
-    def set_kamera_settings(self):
+    def set_camera_settings(self):
         self.sio.emit('set_camera_settings', self._window.get_kamera_settings())
 
     def take_picture(self):
@@ -116,9 +119,9 @@ class Client(socketio.ClientNamespace):
     def on_camera_not_available(self, data):
         self._window.set_camera_not_available()
 
-    @sio.event
-    def on_send_cameras(self, data):
-        self.sio.emit('set_camera', 0)
+    # @sio.event
+    # def on_send_cameras(self, data):
+    #     self.sio.emit('set_camera', 0)
 
     @sio.event
     def on_camera_init(self, data):

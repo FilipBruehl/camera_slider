@@ -38,21 +38,31 @@ class Server(socketio.Namespace):
     def on_disconnect(self, sid):
         print(f'{sid} disconnected')
 
-    def on_get_cameras(self, sid):
+    def on_connect_camera(self, sid, data):
         cameras = Camera.get_available_cameras()
         if cameras:
-            cameras = [camera[0] for camera in cameras]
-            print("Sending cameras")
-            self.sio.emit('send_cameras', cameras)
+            if not self.camera_selected:
+                self.camera_selected = Camera(data)
+            self.sio.emit('camera_init', self.camera_selected.get_information())
         else:
             print("No camera available")
             self.sio.emit('camera_not_available')
 
-    def on_set_camera(self, sid, data):
-        print(sid, data)
-        if not self.camera_selected:
-            self.camera_selected = Camera(data)
-        self.sio.emit('camera_init', self.camera_selected.get_information())
+    # def on_get_cameras(self, sid):
+    #     cameras = Camera.get_available_cameras()
+    #     if cameras:
+    #         cameras = [camera[0] for camera in cameras]
+    #         print("Sending cameras")
+    #         self.sio.emit('send_cameras', cameras)
+    #     else:
+    #         print("No camera available")
+    #         self.sio.emit('camera_not_available')
+    #
+    # def on_set_camera(self, sid, data):
+    #     print(sid, data)
+    #     if not self.camera_selected:
+    #         self.camera_selected = Camera(data)
+    #     self.sio.emit('camera_init', self.camera_selected.get_information())
 
     def on_disconnect_camera(self, sid):
         self.camera_selected.exit()
