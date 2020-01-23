@@ -1,4 +1,2 @@
 pyqt5
-python-socketio
 qstylizer
-requests

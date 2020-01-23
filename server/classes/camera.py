@@ -1,6 +1,5 @@
 import gphoto2 as gp
 import subprocess, os, signal
-from operator import itemgetter
 
 
 class Camera:
@@ -41,23 +40,12 @@ class Camera:
         capture_target.set_value(choice)
         self.camera.set_config(config)
         print("Camera initialized")
-        # self.list_config()
-
-        # self.get_battery()
-        # self.get_focal()
-        # self.get_shutter_speed()
-        # self.get_iso()
-        # self.get_autofocus()
-        # self.get_image_quality()
 
     def take_picture(self):
         file_path = self.camera.capture(gp.GP_CAPTURE_IMAGE)
         file = self.camera.file_get_info(file_path.folder, file_path.name)
         print(file_path.folder, file_path.name, file.file.width, file.file.height, file.file.type)
         return file_path
-
-    def capture_video(self):
-        file_path = self.camera.capture(gp.GP_CAPTURE_MOVIE)
 
     def get_information(self):
         return {
@@ -142,27 +130,3 @@ class Camera:
     def exit(self):
         self.camera.exit()
         self.camera = None
-
-
-if __name__ == "__main__":
-    Camera.kill_gphoto_process()
-    cameras = Camera.get_available_cameras()
-    for camera in cameras:
-        print(camera)
-    camera = Camera(0)
-    options = camera.get_options()
-    print(options)
-    # iso = camera.get_iso()
-    # for options in iso.get_choices():
-    #     print(options)
-    # camera.list_config()
-    # camera.capture_video()
-    # print(camera.get_focal())
-    # camera.set_focal("f/5.6")
-    # print(camera.get_focal())
-    # print(camera.get_shutter_speed())
-    # camera.set_shutter_speed("2")
-    # print(camera.get_shutter_speed())
-    # print(camera.get_iso())
-    # camera.set_iso(1600)
-    # print(camera.get_iso())

@@ -1,7 +1,6 @@
 from ipaddress import ip_address
 from PyQt5.QtWidgets import QDialog
 from classes.ui.designer.connect_server import Ui_Dialog
-from styles.Styles import ConnectServerStyles
 
 
 class ConnectServer(QDialog):
@@ -9,8 +8,6 @@ class ConnectServer(QDialog):
         super().__init__()
         self.ui = Ui_Dialog()
         self.ui.setupUi(self)
-        # self.ui.pushButton_ok.setStyleSheet(ConnectServerStyles.button_style().toString())
-        # self.ui.lineEdit_ip.setStyleSheet(ConnectServerStyles.line_edit_style().toString())
         self.ui.pushButton_ok.clicked.connect(self.terminate)
         self.ui.lineEdit_ip.textEdited.connect(self.check_input)
 
@@ -21,7 +18,7 @@ class ConnectServer(QDialog):
             self.ui.pushButton_ok.setDisabled(True)
             self.ui.lineEdit_ip.setProperty("valid", False)
             self.ui.lineEdit_ip.style().unpolish(self.ui.lineEdit_ip)
-            self.ui .lineEdit_ip.style().polish(self.ui.lineEdit_ip)
+            self.ui.lineEdit_ip.style().polish(self.ui.lineEdit_ip)
             self.ui.lineEdit_ip.update()
 
     def check_input(self, input):

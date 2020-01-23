@@ -1,12 +1,8 @@
 from PyQt5.QtCore import pyqtSignal
 from PyQt5.QtWidgets import QMainWindow, QMessageBox
 from classes.ui.designer.main_window import Ui_MainWindow
-from styles.Styles import MainWindowStyles
-from classes.ui.ConnectCamera import ConnectCamera
-from classes.DataContainer import DataContainer
 
 
-# View Teil des MVC Pattern
 class MainWindow(QMainWindow):
     connect_server_signal = pyqtSignal()
     disconnect_server_signal = pyqtSignal()
@@ -31,9 +27,6 @@ class MainWindow(QMainWindow):
         super().__init__()
         self.ui = Ui_MainWindow()
         self.ui.setupUi(self)
-        # self.ui.groupBox_info.setStyleSheet(MainWindowStyles.main_window_information_style().toString())
-        # self.ui.menubar.setStyleSheet(MainWindowStyles.main_window_menu_style().toString())
-        # self.ui.groupBox_settings.setStyleSheet(MainWindowStyles.main_window_settings_style().toString())
         self.ui.label_info_server_ip.setObjectName("serverip")
         self.ui.input_info_camera_name.setObjectName("cameraname")
         self.ui.actionConnect.triggered.connect(self.connect_server_signal)
@@ -63,11 +56,12 @@ class MainWindow(QMainWindow):
         self.ui.comboBox_steuerung_manuell_richtung.currentTextChanged.connect(self.check_manual_settings)
         self.ui.lineEdit_steuerung_manuell_distanz.textChanged.connect(self.check_manual_settings)
 
-    def about(self):
+    @staticmethod
+    def about():
         msg = QMessageBox()
         msg.setWindowTitle("Über Camera Slider")
         msg.setText(
-            "<h3>Über Camera Slider</h3><p>Projektarbeit für das Modul CPS der FH Kiel.<br>Erstellt von Filip Hugo Brühl</p>")
+            "<h3>Über Camera Slider</h3><p>Projektarbeit für das Modul CPS der FH Kiel.<br>Erstellt von Filip Hugo Brühl</p><br><a href='https://github.com/FilipBruehl/camera_slider'>Download auf GitHub</a>")
         msg.setIcon(QMessageBox.Information)
         msg.setStandardButtons(QMessageBox.Ok)
         msg.exec_()
@@ -102,18 +96,6 @@ class MainWindow(QMainWindow):
         self.ui.actionConnect.setEnabled(True)
         self.ui.actionClose.setEnabled(True)
         self.ui.actionDisconnect.setDisabled(True)
-
-    # def connect_camera(self):
-    #     index, camera = ConnectCamera.get_camera()
-    #     print(index, camera)
-    #     self.client.send_msg("set camera", index)
-    #     if camera:
-    #         self.ui.label_info_camera_name.setText(camera)
-    #         self.ui.label_info_camera_name.setStyleSheet("color: green; border: none;")
-    #         self.ui.label_info_camera_name.update()
-    #         self.ui.actionConnectCamera.setDisabled(True)
-    #     else:
-    #         self.ui.label_info_camera_name.setText("Nicht verbunden")
 
     def set_camera_connected(self, camera_info):
         self.ui.actionConnectCamera.setDisabled(True)
@@ -166,7 +148,6 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_steuerung_kamera.setEnabled(True)
 
     def set_camera_options(self, data):
-        print(data)
         self.ui.comboBox_settings_kamera_blende.addItems(data['focal'])
         self.ui.comboBox_settings_kamera_shutter.addItems(data['shutter'])
         self.ui.comboBox_settings_kamera_iso.addItems(data['iso'])
@@ -344,10 +325,6 @@ class MainWindow(QMainWindow):
         return self.ui.comboBox_settings_slider_start.currentText()
 
     def set_slider_info(self, data):
-        # if 'running' in data and data['running']:
-        #     self.ui.input_info_slider_status.setText("An")
-        #     self.ui.input_info_slider_status.setStyleSheet("color: green; border: none;")
-        # else:
         self.ui.input_info_slider_status.setText("Aus")
         self.ui.input_info_slider_status.setStyleSheet("color: #DB2828; border: none;")
         self.ui.input_info_slider_frequenz.setText(data['frequency'])

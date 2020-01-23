@@ -2,33 +2,27 @@ import socket
 import pickle
 import sys
 from threading import Thread
-from time import sleep
 from PyQt5.QtWidgets import QApplication
 from classes.ui.MainWindow import MainWindow
 from classes.ui.ConnectServer import ConnectServer
 
 
-# folgt dem Singleton pattern
 class Client:
-    _instance = None
 
     def __init__(self):
-        if Client._instance:
-            raise Exception("Client already initialized")
-        else:
-            self.host_port = 50007
-            self.host_ip = ""
-            self.header_size = 10
-            self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-            self.connected = False
-            self.camera_connected = False
-            self.camera_info = None
-            self.camera_options = None
-            self.motor_connected = False
-            self._app = QApplication(sys.argv)
-            self._window = MainWindow()
-            self.thread_recv = Thread(target=self.receive)
-            self.init_main_window_signals()
+        self.host_port = 50007
+        self.host_ip = ""
+        self.header_size = 10
+        self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+        self.connected = False
+        self.camera_connected = False
+        self.camera_info = None
+        self.camera_options = None
+        self.motor_connected = False
+        self._app = QApplication(sys.argv)
+        self._window = MainWindow()
+        self.thread_recv = Thread(target=self.receive)
+        self.init_main_window_signals()
 
     def init_main_window_signals(self):
         self._window.connect_server_signal.connect(self.connect)
@@ -47,12 +41,6 @@ class Client:
         self._window.start_slider_signal.connect(self.start_slider)
         self._window.measure_distance_signal.connect(self.measure_distance)
         self._window.position_slider_signal.connect(self.position_slider)
-    
-    @staticmethod
-    def get_instance():
-        if not Client._instance:
-            Client._instance = Client()
-        return Client._instance
 
     def run(self):
         self._window.show()
@@ -119,9 +107,7 @@ class Client:
 
     def send(self, command, data=None):
         try:
-            # print(data)
             if data is not None:
-                # print(data)
                 data = pickle.dumps(data)
                 data_len = bytes(f"{len(data):<{self.header_size}}", 'utf-8')
             else:
@@ -148,20 +134,14 @@ class Client:
                 command_len = self.socket.recv(self.header_size)
                 command_len = command_len.decode().strip()
                 command_len = int(command_len)
-                # print(f"command_len = {command_len}")
                 if command_len > 0:
-                    # print("loading command")
                     command = self.socket.recv(command_len)
                     data_len = int(command[:self.header_size].decode().strip())
                     command = command[self.header_size:]
                     command = pickle.loads(command)
-                    # print(f"command loaded. command = {command}, data_len = {data_len}")
                     if data_len > 0:
-                        # print("loading data")
                         data = self.socket.recv(data_len)
                         data = pickle.loads(data)
-                        # print(f"data loaded. data = {data}")
-                        # print("message received")
                 print(f"message received. command_len = {command_len}, command = {command}, data_len = {data_len}, data = {data}")
                 self.handle_command(command, data)
             except:
@@ -251,8 +231,3 @@ class Client:
 
     def on_sensors_disconnected(self):
         self._window.set_sensors_disconnected()
-
-
-if __name__ == "__main__":
-    client = Client.get_instance()
-    sys.exit(client.run())

@@ -3,7 +3,6 @@ import pickle
 import sys
 from threading import Thread
 from time import sleep
-from os import system
 from classes.camera import Camera
 from classes.motor import StepMotor
 from classes.hc_sr04 import HcSr04
@@ -54,20 +53,14 @@ class Server:
                 command_len = self.conn.recv(self.header_size)
                 command_len = command_len.decode().strip()
                 command_len = int(command_len)
-                # print(f"command_len = {command_len}")
                 if command_len > 0:
-                    # print("loading command")
                     command = self.conn.recv(command_len)
                     data_len = int(command[:self.header_size].decode().strip())
                     command = command[self.header_size:]
                     command = pickle.loads(command)
-                    # print(f"command loaded. command = {command}, data_len = {data_len}")
                     if data_len > 0:
-                        # print("loading data")
                         data = self.conn.recv(data_len)
                         data = pickle.loads(data)
-                        # print(f"data loaded. data = {data}")
-                # print("message received")
                 print(f"message received. command_len = {command_len}, command = {command}, data_len = {data_len}, data = {data}")
                 self.handle_command(command, data)
             except:
@@ -257,7 +250,6 @@ class Server:
         rotate = self.motor.rotate_counterclockwise if self.motor_data['direction'] == "Links" else self.motor.rotate_clockwise
         self.motor_running = True
         self.camera_selected.take_picture()
-        # self.measure_distance()
         self.pictures_to_take -= 1
         steps = (int(self.motor_data['distance']) / 4) * 200
         steps_per_cycle = int(steps)//self.pictures_to_take
@@ -267,7 +259,6 @@ class Server:
             self.motor.disable()
             sleep(0.5)
             self.camera_selected.take_picture()
-            # self.measure_distance()
         self.motor_running = False
         self.motor.disable()
 
@@ -295,16 +286,3 @@ class Server:
             print(f"Links: {self.hc_sr04_left.get_distance()} cm/ Rechts: {self.hc_sr04_right.get_distance()} cm")
             self.send('distance', data={'left': self.hc_sr04_left.get_distance(), 'right': self.hc_sr04_right.get_distance()})
             sleep(0.1)
-
-
-if __name__ == "__main__":
-    system("sudo systemctl disable pigpiod")
-    sleep(0.5)
-    system("sudo systemctl start pigpiod")
-    print("Daemon started")
-
-    server = Server()
-    try:
-        server.run()
-    except KeyboardInterrupt:
-        server.stop()
