@@ -125,16 +125,16 @@ class Server(socketio.Namespace):
         self.motor.disable()
 
     def measure_distance(self):
-        self.distance_left = self.hc_sr04_left.samples()
-        self.distance_right = self.hc_sr04_right.samples()
+        self.distance_left = self.hc_sr04_left.measure()
+        self.distance_right = self.hc_sr04_right.measure()
         print(f"Links: {self.distance_left} cm/ Rechts: {self.distance_right} cm")
         self.sio.emit('distance', data={'left': self.distance_left, 'right': self.distance_right})
         #eventlet.sleep(0.01)
 
     def measure_distance_thread(self):
         while self.motor_running:
-            self.distance_left = self.hc_sr04_left.measure_distance()
-            self.distance_right = self.hc_sr04_right.measure_distance()
+            self.distance_left = self.hc_sr04_left._measure_distance()
+            self.distance_right = self.hc_sr04_right._measure_distance()
             print(f"Links: {self.distance_left} cm/ Rechts: {self.distance_right} cm")
             self.sio.emit('distance', data={'left': self.distance_left, 'right': self.distance_right})
             eventlet.sleep(0.2)

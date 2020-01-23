@@ -16,10 +16,13 @@ class MainWindow(QMainWindow):
     disconnect_motor_signal = pyqtSignal()
     connect_sensors_signal = pyqtSignal()
     disconnect_sensors_signal = pyqtSignal()
-    set_slider_settings_singal = pyqtSignal()
-    set_kamera_settings_signal = pyqtSignal()
+    set_slider_settings_signal = pyqtSignal()
+    set_slider_settings_manual_signal = pyqtSignal()
+    set_camera_settings_signal = pyqtSignal()
+    set_camera_settings_takes_signal = pyqtSignal()
     take_picture_signal = pyqtSignal()
     start_slider_signal = pyqtSignal()
+    measure_distance_signal = pyqtSignal()
     position_slider_signal = pyqtSignal()
     about_signal = pyqtSignal()
     close_signal = pyqtSignal()
@@ -41,10 +44,13 @@ class MainWindow(QMainWindow):
         self.ui.actionDisconnectMotor.triggered.connect(self.disconnect_motor_signal)
         self.ui.actionConnectSensors.triggered.connect(self.connect_sensors_signal)
         self.ui.actionDisconnectSensors.triggered.connect(self.disconnect_sensors_signal)
-        self.ui.pushButton_settings_slider.clicked.connect(self.set_slider_settings_singal)
-        self.ui.pushButton_settings_kamera.clicked.connect(self.set_kamera_settings_signal)
+        self.ui.pushButton_settings_slider.clicked.connect(self.set_slider_settings_signal)
+        self.ui.pushButton_steuerung_manuell.clicked.connect(self.set_slider_settings_manual_signal)
+        self.ui.pushButton_settings_kamera.clicked.connect(self.set_camera_settings_signal)
+        self.ui.pushButton_settings_kamera_takes.clicked.connect(self.set_camera_settings_takes_signal)
         self.ui.pushButton_steuerung_kamera.clicked.connect(self.take_picture_signal)
         self.ui.pushButton_steuerung_slider.clicked.connect(self.start_slider_signal)
+        self.ui.pushButton_steuerung_abstand.clicked.connect(self.measure_distance_signal)
         self.ui.pushButton_steuerung_slider_position.clicked.connect(self.position_slider_signal)
         self.ui.actionAbout.triggered.connect(self.about)
         self.ui.actionClose.triggered.connect(self.close)
@@ -52,7 +58,10 @@ class MainWindow(QMainWindow):
         self.ui.comboBox_settings_slider_richtung.currentTextChanged.connect(self.check_slider_settings)
         self.ui.lineEdit_settings_slider_steps.textChanged.connect(self.check_slider_settings)
         self.ui.lineEdit_settings_slider_frequenz.textChanged.connect(self.check_slider_settings)
-        self.ui.lineEdit_settings_kamera_takes.textChanged.connect(self.check_kamera_settings)
+        self.ui.lineEdit_settings_kamera_takes.textChanged.connect(self.check_camera_settings)
+
+        self.ui.comboBox_steuerung_manuell_richtung.currentTextChanged.connect(self.check_manual_settings)
+        self.ui.lineEdit_steuerung_manuell_distanz.textChanged.connect(self.check_manual_settings)
 
     def about(self):
         msg = QMessageBox()
@@ -151,6 +160,7 @@ class MainWindow(QMainWindow):
         self.ui.label_settings_kamera_shutter.setEnabled(True)
         self.ui.comboBox_settings_kamera_shutter.setEnabled(True)
         self.ui.label_settings_kamera_iso.setEnabled(True)
+        self.ui.pushButton_settings_kamera.setEnabled(True)
 
         self.ui.groupBox_steuerung_kamera.setEnabled(True)
         self.ui.pushButton_steuerung_kamera.setEnabled(True)
@@ -178,7 +188,6 @@ class MainWindow(QMainWindow):
         self.ui.input_info_camera_iso.setText(data['iso'])
         self.ui.input_info_camera_fokus.setText(data['focus'])
         self.ui.input_info_camera_format.setText(data['quality'])
-
 
     def set_camera_not_available(self):
         self.ui.input_info_camera_name.setText("Keine Kamera verfügbar")
@@ -228,6 +237,8 @@ class MainWindow(QMainWindow):
         self.ui.groupBox_steuerung_kamera.setDisabled(True)
         self.ui.pushButton_steuerung_kamera.setDisabled(True)
 
+        self.ui.pushButton_settings_kamera_takes.setDisabled(True)
+
     def set_motor_connected(self):
         self.ui.actionConnectMotor.setDisabled(True)
         self.ui.actionDisconnectMotor.setEnabled(True)
@@ -255,7 +266,10 @@ class MainWindow(QMainWindow):
         self.ui.label_settings_slider_steps.setEnabled(True)
         self.ui.lineEdit_settings_slider_frequenz.setEnabled(True)
         self.ui.lineEdit_settings_slider_steps.setEnabled(True)
-        self.ui.pushButton_settings_slider.setEnabled(True)
+        self.ui.pushButton_steuerung_slider_position.setEnabled(True)
+
+        self.ui.groupBox_steuerung_manuell.setEnabled(True)
+        self.ui.pushButton_steuerung_manuell.setDisabled(True)
 
     def set_motor_disabled(self):
         self.ui.actionConnectMotor.setEnabled(True)
@@ -298,21 +312,32 @@ class MainWindow(QMainWindow):
         self.ui.pushButton_settings_slider.setDisabled(True)
         self.ui.pushButton_steuerung_slider_position.setDisabled(True)
 
+        self.ui.groupBox_steuerung_manuell.setDisabled(True)
+
     def check_slider_settings(self, data):
         if self.ui.comboBox_settings_slider_start.currentText() and \
                 self.ui.comboBox_settings_slider_richtung.currentText() and \
                 self.ui.lineEdit_settings_slider_steps.text() and \
                 self.ui.lineEdit_settings_slider_frequenz.text():
             self.ui.pushButton_settings_slider.setEnabled(True)
-            self.ui.pushButton_steuerung_slider_position.setEnabled(True)
 
     def get_slider_settings(self):
         return {
-            'start': self.ui.comboBox_settings_slider_start.currentText(),
             'direction': self.ui.comboBox_settings_slider_richtung.currentText(),
             'distance': self.ui.lineEdit_settings_slider_steps.text(),
-            'frequency': self.ui.lineEdit_settings_slider_frequenz.text(),
-            'type': 'automatic'
+            'frequency': self.ui.lineEdit_settings_slider_frequenz.text()
+        }
+
+    def check_manual_settings(self, data):
+        if self.ui.comboBox_steuerung_manuell_richtung.currentText() and \
+                self.ui.lineEdit_steuerung_manuell_distanz.text():
+            self.ui.pushButton_steuerung_manuell.setEnabled(True)
+
+    def get_slider_settings_manual(self):
+        return {
+            'direction': self.ui.comboBox_steuerung_manuell_richtung.currentText(),
+            'distance': self.ui.lineEdit_steuerung_manuell_distanz.text(),
+            'frequency': 900
         }
 
     def get_slider_start(self):
@@ -327,27 +352,29 @@ class MainWindow(QMainWindow):
         self.ui.input_info_slider_status.setStyleSheet("color: #DB2828; border: none;")
         self.ui.input_info_slider_frequenz.setText(data['frequency'])
         self.ui.input_info_slider_richtung.setText(data['direction'])
-        if data['type'] == 'automatic':
-            self.ui.input_info_slider_steps.setText(f"{data['distance']} cm")
-        elif data['type'] == 'manual':
-            self.ui.input_info_slider_steps.setText(f"{data['distance']} Schritte")
+        self.ui.input_info_slider_steps.setText(f"{data['distance']} cm")
         self.ui.groupBox_steuerung_slider.setEnabled(True)
         self.ui.pushButton_steuerung_slider.setEnabled(True)
-        print("Button enabled")
 
     def slider_started(self):
-        print("Started")
         self.ui.pushButton_steuerung_slider.setDisabled(True)
+        self.ui.pushButton_steuerung_kamera.setDisabled(True)
+        self.ui.pushButton_steuerung_abstand.setDisabled(True)
         self.ui.input_info_slider_status.setText("An")
         self.ui.input_info_slider_status.setStyleSheet("color: green; border: none;")
         self.ui.groupBox_settings_slider.setDisabled(True)
+        self.ui.groupBox_steuerung_manuell.setDisabled(True)
+        self.ui.groupBox_settings_kamera.setDisabled(True)
 
     def slider_finished(self):
-        print("Finished")
         self.ui.pushButton_steuerung_slider.setEnabled(True)
+        self.ui.pushButton_steuerung_kamera.setEnabled(True)
+        self.ui.pushButton_steuerung_abstand.setEnabled(True)
         self.ui.input_info_slider_status.setText("Aus")
         self.ui.input_info_slider_status.setStyleSheet("color: #DB2828; border: none;")
         self.ui.groupBox_settings_slider.setEnabled(True)
+        self.ui.groupBox_steuerung_manuell.setEnabled(True)
+        self.ui.groupBox_settings_kamera.setEnabled(True)
 
     def set_distance(self, distance):
         self.ui.input_info_slider_links.setText(f"{distance['left']} cm")
@@ -356,21 +383,27 @@ class MainWindow(QMainWindow):
     def set_sensors_connected(self):
         self.ui.actionConnectSensors.setDisabled(True)
         self.ui.actionDisconnectSensors.setEnabled(True)
+        self.ui.groupBox_steuerung_abstand.setEnabled(True)
+        self.ui.pushButton_steuerung_abstand.setEnabled(True)
 
     def set_sensors_disconnected(self):
         self.ui.actionConnectSensors.setEnabled(True)
         self.ui.actionDisconnectSensors.setDisabled(True)
         self.ui.input_info_slider_links.setText("")
         self.ui.input_info_slider_rechts.setText("")
+        self.ui.groupBox_steuerung_abstand.setDisabled(True)
+        self.ui.pushButton_steuerung_abstand.setDisabled(True)
 
-    def check_kamera_settings(self, data):
+    def check_camera_settings(self, data):
         if self.ui.lineEdit_settings_kamera_takes.text():
-            self.ui.pushButton_settings_kamera.setEnabled(True)
+            self.ui.pushButton_settings_kamera_takes.setEnabled(True)
 
-    def get_kamera_settings(self):
+    def get_camera_settings(self):
         return {
-            'takes': self.ui.lineEdit_settings_kamera_takes.text(),
             'focal': self.ui.comboBox_settings_kamera_blende.currentText(),
             'shutter': self.ui.comboBox_settings_kamera_shutter.currentText(),
             'iso': self.ui.comboBox_settings_kamera_iso.currentText()
         }
+
+    def get_camera_takes(self):
+        return self.ui.lineEdit_settings_kamera_takes.text()

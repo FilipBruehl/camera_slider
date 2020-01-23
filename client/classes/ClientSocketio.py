@@ -37,8 +37,8 @@ class Client(socketio.ClientNamespace):
         self._window.disconnect_motor_signal.connect(self.disconnect_motor)
         self._window.connect_sensors_signal.connect(self.connect_sensors)
         self._window.disconnect_sensors_signal.connect(self.disconnect_sensors)
-        self._window.set_slider_settings_singal.connect(self.set_slider_settings)
-        self._window.set_kamera_settings_signal.connect(self.set_camera_settings)
+        self._window.set_slider_settings_signal.connect(self.set_slider_settings)
+        self._window.set_camera_settings_signal.connect(self.set_camera_settings)
         self._window.take_picture_signal.connect(self.take_picture)
         self._window.start_slider_signal.connect(self.start_slider)
 
@@ -86,7 +86,7 @@ class Client(socketio.ClientNamespace):
         self.sio.emit('start_slider')
 
     def set_camera_settings(self):
-        self.sio.emit('set_camera_settings', self._window.get_kamera_settings())
+        self.sio.emit('set_camera_settings', self._window.get_camera_settings())
 
     def take_picture(self):
         self.sio.emit('take_picture')

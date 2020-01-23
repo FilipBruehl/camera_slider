@@ -26,7 +26,6 @@ class Server:
         self.motor_running = False
         self.motor_data = None
         self.hc_sr04_left, self.hc_sr04_right = None, None
-        self.distance_left, self.distance_right = None, None
 
     def run(self):
         self.socket.listen(1)
@@ -116,12 +115,18 @@ class Server:
             self.on_disconnect_sensors()
         elif command == "set_slider_settings":
             self.on_set_slider_settings(data)
+        elif command == "set_slider_settings_manual":
+            self.on_set_slider_settings_manual(data)
         elif command == "set_camera_settings":
             self.on_set_camera_settings(data)
+        elif command == "set_camera_settings_takes":
+            self.on_set_camera_settings_takes(data)
         elif command == "take_picture":
             self.on_take_picture()
         elif command == "start_slider":
             self.on_start_slider()
+        elif command == "measure_distance":
+            self.measure_distance()
         elif command == "position_slider":
             self.on_position_slider(data)
 
@@ -174,10 +179,19 @@ class Server:
 
     def on_set_slider_settings(self, data):
         self.motor_data = data
-        print(self.motor_data)
         self.motor.set_frequency(int(self.motor_data['frequency']))
-        # data.update({'running': self.motor_running})
         self.send('slider_settings_set', data)
+
+    def on_set_slider_settings_manual(self, data):
+        self.send('slider_started')
+        thread_slider = Thread(target=self.move_manual, args=(data,))
+        thread_distance = Thread(target=self.measure_distance_thread)
+        thread_slider.start()
+        sleep(0.1)
+        thread_distance.start()
+        thread_slider.join()
+        thread_distance.join()
+        self.send('slider_finished')
 
     def on_start_slider(self):
         self.send('slider_started')
@@ -191,11 +205,13 @@ class Server:
         self.send('slider_finished')
 
     def on_set_camera_settings(self, data):
-        self.pictures_to_take = int(data['takes'])
         self.camera_selected.set_focal(data['focal'])
         self.camera_selected.set_shutter_speed(data['shutter'])
         self.camera_selected.set_iso(data['iso'])
         self.send('camera_values', self.camera_selected.get_information())
+
+    def on_set_camera_settings_takes(self, data):
+        self.pictures_to_take = int(data)
 
     def on_take_picture(self):
         self.camera_selected.take_picture()
@@ -212,26 +228,24 @@ class Server:
         self.send('slider_finished')
 
     def position_slider(self, new_position):
-        print(new_position)
         rotate = None
         distance = None
         steps = None
         self.motor_running = True
         if new_position == "Links":
             rotate = self.motor.rotate_counterclockwise
-            distance = self.distance_left - 5
+            distance = self.hc_sr04_left.get_distance() - 5
         elif new_position == "Rechts":
             rotate = self.motor.rotate_clockwise
-            distance = self.distance_right - 5
+            distance = self.hc_sr04_right.get_distance() - 5
         elif new_position == "Mitte":
-            if self.distance_left > self.distance_right:
-               rotate = self.motor.rotate_clockwise
-               distance = self.distance_left - self.distance_right
-            elif self.distance_left < self.distance_right:
+            if self.hc_sr04_left.get_distance() > self.hc_sr04_right.get_distance():
+                rotate = self.motor.rotate_clockwise
+                distance = self.hc_sr04_left.get_distance() - self.hc_sr04_left.get_distance()
+            elif self.hc_sr04_left.get_distance() < self.hc_sr04_right.get_distance():
                 rotate = self.motor.rotate_counterclockwise
-                distance = self.distance_right - self.distance_left
+                distance = self.hc_sr04_right.get_distance() - self.hc_sr04_left.get_distance()
         steps = distance // 4 * 200
-        print(steps)
 
         for _ in range(0, int(steps)):
             rotate()
@@ -245,38 +259,41 @@ class Server:
         self.camera_selected.take_picture()
         # self.measure_distance()
         self.pictures_to_take -= 1
-        steps = None
-        cm = None
-        if self.motor_data['type'] == 'automatic':
-            steps = (int(self.motor_data['distance']) / 4) * 200
-            cm = int(self.motor_data['distance'])
-        elif self.motor_data['type'] == 'manual':
-            steps = int(self.motor_data['distance'])
-            cm = (int(self.motor_data['distance']) / 200) * 4
+        steps = (int(self.motor_data['distance']) / 4) * 200
         steps_per_cycle = int(steps)//self.pictures_to_take
-        print(f"Pictures: {self.pictures_to_take}, steps: {steps_per_cycle}")
-        for x in range(self.pictures_to_take):
+        for _ in range(self.pictures_to_take):
             for _ in range(steps_per_cycle):
                 rotate()
+            self.motor.disable()
             sleep(0.5)
             self.camera_selected.take_picture()
             # self.measure_distance()
         self.motor_running = False
         self.motor.disable()
 
+    def move_manual(self, data):
+        self.motor.set_frequency(data['frequency'])
+        rotate = self.motor.rotate_counterclockwise if data['direction'] == "Links" else self.motor.rotate_clockwise
+        self.motor_running = True
+        steps = int(data['distance'])
+        for _ in range(steps):
+            rotate()
+        self.motor_running = False
+        self.motor.disable()
+
     def measure_distance(self):
-        self.distance_left = self.hc_sr04_left.samples()
-        self.distance_right = self.hc_sr04_right.samples()
-        print(f"Links: {self.distance_left} cm/ Rechts: {self.distance_right} cm")
-        self.send('distance', data={'left': self.distance_left, 'right': self.distance_right})
+        self.hc_sr04_left.measure(samples=5)
+        self.hc_sr04_right.measure(samples=5)
+        print(f"Links: {self.hc_sr04_left.get_distance()} cm/ Rechts: {self.hc_sr04_right.get_distance()} cm")
+        self.send('distance', data={'left': self.hc_sr04_left.get_distance(), 'right': self.hc_sr04_right.get_distance()})
         sleep(0.1)
 
     def measure_distance_thread(self):
         while self.motor_running:
-            self.distance_left = self.hc_sr04_left.measure_distance()
-            self.distance_right = self.hc_sr04_right.measure_distance()
-            print(f"Links: {self.distance_left} cm/ Rechts: {self.distance_right} cm")
-            self.send('distance', data={'left': self.distance_left, 'right': self.distance_right})
+            self.hc_sr04_left.measure()
+            self.hc_sr04_right.measure()
+            print(f"Links: {self.hc_sr04_left.get_distance()} cm/ Rechts: {self.hc_sr04_right.get_distance()} cm")
+            self.send('distance', data={'left': self.hc_sr04_left.get_distance(), 'right': self.hc_sr04_right.get_distance()})
             sleep(0.1)
 
 

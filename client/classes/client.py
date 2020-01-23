@@ -39,10 +39,13 @@ class Client:
         self._window.disconnect_motor_signal.connect(self.disconnect_motor)
         self._window.connect_sensors_signal.connect(self.connect_sensors)
         self._window.disconnect_sensors_signal.connect(self.disconnect_sensors)
-        self._window.set_slider_settings_singal.connect(self.set_slider_settings)
-        self._window.set_kamera_settings_signal.connect(self.set_camera_settings)
+        self._window.set_slider_settings_signal.connect(self.set_slider_settings)
+        self._window.set_slider_settings_manual_signal.connect(self.set_slider_settings_manual)
+        self._window.set_camera_settings_signal.connect(self.set_camera_settings)
+        self._window.set_camera_settings_takes_signal.connect(self.set_camera_settings_takes)
         self._window.take_picture_signal.connect(self.take_picture)
         self._window.start_slider_signal.connect(self.start_slider)
+        self._window.measure_distance_signal.connect(self.measure_distance)
         self._window.position_slider_signal.connect(self.position_slider)
     
     @staticmethod
@@ -93,14 +96,23 @@ class Client:
     def set_slider_settings(self):
         self.send("set_slider_settings", self._window.get_slider_settings())
 
+    def set_slider_settings_manual(self):
+        self.send("set_slider_settings_manual", self._window.get_slider_settings_manual())
+
     def set_camera_settings(self):
-        self.send("set_camera_settings", self._window.get_kamera_settings())
+        self.send("set_camera_settings", self._window.get_camera_settings())
+
+    def set_camera_settings_takes(self):
+        self.send("set_camera_settings_takes", self._window.get_camera_takes())
 
     def take_picture(self):
         self.send("take_picture")
 
     def start_slider(self):
         self.send("start_slider")
+
+    def measure_distance(self):
+        self.send("measure_distance")
 
     def position_slider(self):
         self.send("position_slider", self._window.get_slider_start())
