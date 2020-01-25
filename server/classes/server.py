@@ -221,27 +221,30 @@ class Server:
         self.send('slider_finished')
 
     def position_slider(self, new_position):
+        self.motor.set_frequency(900)
+        distance_left = self.hc_sr04_left.get_distance()
+        distance_right = self.hc_sr04_right.get_distance()
         rotate = None
         distance = None
-        steps = None
         self.motor_running = True
         if new_position == "Links":
             rotate = self.motor.rotate_counterclockwise
-            distance = self.hc_sr04_left.get_distance() - 5
+            distance = distance_left - 5
         elif new_position == "Rechts":
             rotate = self.motor.rotate_clockwise
-            distance = self.hc_sr04_right.get_distance() - 5
+            distance = distance_right - 5
         elif new_position == "Mitte":
-            if self.hc_sr04_left.get_distance() > self.hc_sr04_right.get_distance():
-                rotate = self.motor.rotate_clockwise
-                distance = self.hc_sr04_left.get_distance() - self.hc_sr04_left.get_distance()
-            elif self.hc_sr04_left.get_distance() < self.hc_sr04_right.get_distance():
+            if distance_left > distance_right:
                 rotate = self.motor.rotate_counterclockwise
-                distance = self.hc_sr04_right.get_distance() - self.hc_sr04_left.get_distance()
-        steps = distance // 4 * 200
+                distance = (distance_left - distance_right) / 2
+            elif distance_left < distance_right:
+                rotate = self.motor.rotate_clockwise
+                distance = (distance_right - distance_left) / 2
+        if distance > 0:
+            steps = int(distance / 4 * 200)
 
-        for _ in range(0, int(steps)):
-            rotate()
+            for _ in range(0, int(steps)):
+                rotate()
 
         self.motor_running = False
         self.motor.disable()
