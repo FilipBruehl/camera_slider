@@ -655,7 +655,7 @@ background-color: transparent;</string>
            <property name="font">
             <font>
              <family>Bahnschrift</family>
-             <pointsize>18</pointsize>
+             <pointsize>14</pointsize>
             </font>
            </property>
            <property name="styleSheet">
@@ -1128,7 +1128,7 @@ background-color: transparent;</string>
            <property name="font">
             <font>
              <family>Bahnschrift</family>
-             <pointsize>18</pointsize>
+             <pointsize>14</pointsize>
             </font>
            </property>
            <property name="styleSheet">
@@ -1185,7 +1185,7 @@ background-color: transparent;</string>
            <property name="font">
             <font>
              <family>Bahnschrift</family>
-             <pointsize>18</pointsize>
+             <pointsize>14</pointsize>
             </font>
            </property>
            <property name="styleSheet">
@@ -2079,7 +2079,7 @@ background-color: transparent;</string>
            <property name="font">
             <font>
              <family>Bahnschrift</family>
-             <pointsize>18</pointsize>
+             <pointsize>14</pointsize>
             </font>
            </property>
            <property name="alignment">
@@ -2125,7 +2125,7 @@ background-color: transparent;</string>
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>26</height>
+     <height>21</height>
     </rect>
    </property>
    <widget class="QMenu" name="menuProgramm">
@@ -2176,16 +2176,25 @@ background-color: transparent;</string>
    </property>
   </action>
   <action name="actionDisconnect">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Verbindung Trennen</string>
    </property>
   </action>
   <action name="actionConnectCamera">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Kamera verbinden</string>
    </property>
   </action>
   <action name="actionDisconnectCamera">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Kamera Verbindung trennen</string>
    </property>
@@ -2201,21 +2210,33 @@ background-color: transparent;</string>
    </property>
   </action>
   <action name="actionConnectMotor">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Motor verbinden</string>
    </property>
   </action>
   <action name="actionDisconnectMotor">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Motor Verbindung trennen</string>
    </property>
   </action>
   <action name="actionConnectSensors">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Sensoren verbinden</string>
    </property>
   </action>
   <action name="actionDisconnectSensors">
+   <property name="enabled">
+    <bool>false</bool>
+   </property>
    <property name="text">
     <string>Sensoren Verbindung trennen</string>
    </property>
