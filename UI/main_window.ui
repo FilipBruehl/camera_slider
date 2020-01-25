@@ -22,17 +22,8 @@
     <height>720</height>
    </size>
   </property>
-  <property name="font">
-   <font>
-    <family>Bahnschrift</family>
-    <pointsize>14</pointsize>
-   </font>
-  </property>
   <property name="windowTitle">
-   <string>Camera Slider</string>
-  </property>
-  <property name="autoFillBackground">
-   <bool>false</bool>
+   <string>MainWindow</string>
   </property>
   <property name="styleSheet">
    <string notr="true">QMainWindow, QMenuBar, QMenu {	
@@ -99,12 +90,6 @@ Line:disabled, Line:enabled {
 }</string>
   </property>
   <widget class="QWidget" name="centralwidget">
-   <property name="font">
-    <font>
-     <family>Bahnschrift</family>
-     <pointsize>12</pointsize>
-    </font>
-   </property>
    <widget class="QWidget" name="horizontalLayoutWidget">
     <property name="geometry">
      <rect>
@@ -2140,33 +2125,17 @@ background-color: transparent;</string>
      <x>0</x>
      <y>0</y>
      <width>1280</width>
-     <height>22</height>
+     <height>26</height>
     </rect>
    </property>
-   <property name="minimumSize">
-    <size>
-     <width>1280</width>
-     <height>22</height>
-    </size>
-   </property>
-   <property name="maximumSize">
-    <size>
-     <width>1280</width>
-     <height>22</height>
-    </size>
-   </property>
-   <property name="font">
-    <font>
-     <family>Bahnschrift</family>
-     <pointsize>10</pointsize>
-    </font>
-   </property>
-   <widget class="QMenu" name="menuServer">
-    <property name="font">
-     <font>
-      <family>Bahnschrift</family>
-     </font>
+   <widget class="QMenu" name="menuProgramm">
+    <property name="title">
+     <string>Programm</string>
     </property>
+    <addaction name="actionAbout"/>
+    <addaction name="actionClose"/>
+   </widget>
+   <widget class="QMenu" name="menuServer">
     <property name="title">
      <string>Server</string>
     </property>
@@ -2182,62 +2151,9 @@ background-color: transparent;</string>
     <addaction name="actionConnectSensors"/>
     <addaction name="actionDisconnectSensors"/>
    </widget>
-   <widget class="QMenu" name="menuProgramm">
-    <property name="title">
-     <string>Programm</string>
-    </property>
-    <addaction name="actionAbout"/>
-    <addaction name="actionClose"/>
-   </widget>
    <addaction name="menuProgramm"/>
    <addaction name="menuServer"/>
   </widget>
-  <action name="actionConnect">
-   <property name="text">
-    <string>Verbinden</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Bahnschrift</family>
-    </font>
-   </property>
-  </action>
-  <action name="actionDisconnect">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Verbindung trennen</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Bahnschrift</family>
-    </font>
-   </property>
-  </action>
-  <action name="actionConnectCamera">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
-   <property name="text">
-    <string>Kamera verbinden</string>
-   </property>
-   <property name="font">
-    <font>
-     <family>Bahnschrift</family>
-    </font>
-   </property>
-  </action>
-  <action name="actionExportieren">
-   <property name="text">
-    <string>Exportieren</string>
-   </property>
-  </action>
-  <action name="actionImportieren">
-   <property name="text">
-    <string>Importieren</string>
-   </property>
-  </action>
   <action name="actionAbout">
    <property name="text">
     <string>Über</string>
@@ -2254,47 +2170,52 @@ background-color: transparent;</string>
     <string>Ctrl+X</string>
    </property>
   </action>
-  <action name="actionDisconnectCamera">
-   <property name="enabled">
-    <bool>false</bool>
+  <action name="actionConnect">
+   <property name="text">
+    <string>Verbinden</string>
    </property>
+  </action>
+  <action name="actionDisconnect">
+   <property name="text">
+    <string>Verbindung Trennen</string>
+   </property>
+  </action>
+  <action name="actionConnectCamera">
+   <property name="text">
+    <string>Kamera verbinden</string>
+   </property>
+  </action>
+  <action name="actionDisconnectCamera">
    <property name="text">
     <string>Kamera Verbindung trennen</string>
    </property>
   </action>
-  <action name="actionConnectMotor">
-   <property name="enabled">
-    <bool>false</bool>
+  <action name="actionSensoren_verbinden">
+   <property name="text">
+    <string>Sensoren verbinden</string>
    </property>
+  </action>
+  <action name="actionSensoren_Verbindung_trennen">
+   <property name="text">
+    <string>Sensoren Verbindung trennen</string>
+   </property>
+  </action>
+  <action name="actionConnectMotor">
    <property name="text">
     <string>Motor verbinden</string>
    </property>
   </action>
   <action name="actionDisconnectMotor">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>Motor Verbindung trennen</string>
    </property>
   </action>
-  <action name="actionUltraschallsensoren_verbinden">
-   <property name="text">
-    <string>Ultraschallsensoren verbinden</string>
-   </property>
-  </action>
   <action name="actionConnectSensors">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>Sensoren verbinden</string>
    </property>
   </action>
   <action name="actionDisconnectSensors">
-   <property name="enabled">
-    <bool>false</bool>
-   </property>
    <property name="text">
     <string>Sensoren Verbindung trennen</string>
    </property>
