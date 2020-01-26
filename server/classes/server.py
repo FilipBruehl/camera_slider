@@ -5,7 +5,7 @@ from threading import Thread
 from time import sleep
 from typing import Any, Dict
 from classes.camera import Camera
-from classes.motor import StepMotor
+from classes.motor import SchrittMotor
 from classes.hc_sr04 import HcSr04
 from classes.pins import Pins
 
@@ -289,7 +289,7 @@ class Server:
         :return: None
         """
 
-        self.motor = StepMotor()
+        self.motor = SchrittMotor()
         self.send('motor_connected')
 
     def on_disconnect_motor(self) -> None:

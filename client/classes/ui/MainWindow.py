@@ -488,7 +488,7 @@ class MainWindow(QMainWindow):
         return {
             'direction': self.ui.comboBox_steuerung_manuell_richtung.currentText(),
             'distance': self.ui.lineEdit_steuerung_manuell_distanz.text(),
-            'frequency': 900
+            'frequency': 400
         }
 
     def get_slider_start(self) -> str:

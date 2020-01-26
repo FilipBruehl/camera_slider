@@ -1,4 +1,8 @@
 class Pins:
+    """
+    Klasse Pins zum Speichern der Pin-Nummern
+    """
+
     class Ultrasonic:
         LEFT_TRIGGER = 20
         LEFT_ECHO = 21
