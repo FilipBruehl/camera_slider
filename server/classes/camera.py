@@ -1,5 +1,7 @@
 import gphoto2 as gp
-import subprocess, os, signal
+import subprocess
+import os
+import signal
 
 
 class Camera:
@@ -34,18 +36,21 @@ class Camera:
         self.camera.set_port_info(port_info_list[idx])
         self.camera.init()
 
-        config = self.camera.get_config()
-        capture_target = config.get_child_by_name('capturetarget')
-        choice = capture_target.get_choice(1)
-        capture_target.set_value(choice)
-        self.camera.set_config(config)
-        print("Camera initialized")
+        self.set_capture_target()
+        print("Kamera initialisiert")
 
     def take_picture(self):
         file_path = self.camera.capture(gp.GP_CAPTURE_IMAGE)
         file = self.camera.file_get_info(file_path.folder, file_path.name)
         print(file_path.folder, file_path.name, file.file.width, file.file.height, file.file.type)
         return file_path
+
+    def set_capture_target(self):
+        config = self.camera.get_config()
+        capture_target = config.get_child_by_name('capturetarget')
+        choice = capture_target.get_choice(1)
+        capture_target.set_value(choice)
+        self.camera.set_config(config)
 
     def get_information(self):
         return {

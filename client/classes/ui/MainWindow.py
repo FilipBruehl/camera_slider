@@ -426,36 +426,91 @@ class MainWindow(QMainWindow):
 
         self.ui.groupBox_steuerung_manuell.setDisabled(True)
 
-    def check_slider_settings(self, data):
-        if self.ui.comboBox_settings_slider_start.currentText() and \
-                self.ui.comboBox_settings_slider_richtung.currentText() and \
+    def check_slider_settings(self, data: Any) -> None:
+        """
+        Funktion zum Überprüfen von Eingabefeldern und Aktivieren eines dazugehörigen Button.
+
+        Überprüft, ob alle für die Slider Konfiguration notwendigen UI-Elemente einen Inhalt haben und aktiviert dann den Button, zum senden der Einstellungen.
+
+        :param data: zu überprüfende Daten (notwendig für Callback-Funktion)
+        :type data: Any
+
+        :return: None
+        """
+
+        if self.ui.comboBox_settings_slider_richtung.currentText() and \
                 self.ui.lineEdit_settings_slider_steps.text() and \
                 self.ui.lineEdit_settings_slider_frequenz.text():
             self.ui.pushButton_settings_slider.setEnabled(True)
 
-    def get_slider_settings(self):
+    def get_slider_settings(self) -> Dict:
+        """
+        Funktion gibt die Einstellung des Sliders zurück.
+
+        Liest die eingestellten Optionen des Sliders aus der UI aus und gibt diese als Dictionary zurück.
+
+        :return: Einstellungen des Sliders
+        :rtype: dict
+        """
+
         return {
             'direction': self.ui.comboBox_settings_slider_richtung.currentText(),
             'distance': self.ui.lineEdit_settings_slider_steps.text(),
             'frequency': self.ui.lineEdit_settings_slider_frequenz.text()
         }
 
-    def check_manual_settings(self, data):
+    def check_manual_settings(self, data: Any) -> None:
+        """
+        Funktion zum Überprüfen von Eingabefeldern und Aktivieren eines dazugehörigen Button.
+
+        Überprüft, ob für die manuelle Konfiguration des Sliders alle Einstellungen vorgenommen sind und aktiviert dann den Button, um die Einstellungen übertragen zu können.
+
+        :param data: zu überprüfende Daten (notwendig für Callback-Funktion)
+        :type data: Any
+
+        :return: None
+        """
+
         if self.ui.comboBox_steuerung_manuell_richtung.currentText() and \
                 self.ui.lineEdit_steuerung_manuell_distanz.text():
             self.ui.pushButton_steuerung_manuell.setEnabled(True)
 
-    def get_slider_settings_manual(self):
+    def get_slider_settings_manual(self) -> Dict:
+        """
+        Funktion gibt die manuelle Einstellungen des Sliders zurück.
+
+        Liest die eingestellten manuellen Optionen des Sliders aus der UI aus und gibt diese als Dictionary zurück.
+
+        :return: Manuelle Einstellungen des Sliders
+        :rtype: dict
+        """
+
         return {
             'direction': self.ui.comboBox_steuerung_manuell_richtung.currentText(),
             'distance': self.ui.lineEdit_steuerung_manuell_distanz.text(),
             'frequency': 900
         }
 
-    def get_slider_start(self):
+    def get_slider_start(self) -> str:
+        """
+        Funktion gibt die Startposition des Sliders zurück.
+
+        :return: Startposition des Sliders
+        :rtype: str
+        """
+
         return self.ui.comboBox_settings_slider_start.currentText()
 
-    def set_slider_info(self, data):
+    def set_slider_info(self, data: Dict) -> None:
+        """
+        Funktion zum Setzen der Einstellungen des Sliders in der UI.
+
+        :param data: Einstellungen des Sliders
+        :type data: dict
+
+        :return: None
+        """
+
         self.ui.input_info_slider_status.setText("Aus")
         self.ui.input_info_slider_status.setStyleSheet("color: #DB2828; border: none;")
         self.ui.input_info_slider_frequenz.setText(data['frequency'])
@@ -464,7 +519,15 @@ class MainWindow(QMainWindow):
         self.ui.groupBox_steuerung_slider.setEnabled(True)
         self.ui.pushButton_steuerung_slider.setEnabled(True)
 
-    def slider_started(self):
+    def slider_started(self) -> None:
+        """
+        Funktion zum Einstellen der UI, sobald der Slider-Lauf gestartet wurde.
+
+        Deaktiviert die Einstellungsmöglichkeiten und gibt eine visuelle Meldung aus, dass der Slider läuft.
+
+        :return: None
+        """
+
         self.ui.pushButton_steuerung_slider.setDisabled(True)
         self.ui.pushButton_steuerung_kamera.setDisabled(True)
         self.ui.pushButton_steuerung_abstand.setDisabled(True)
@@ -474,7 +537,15 @@ class MainWindow(QMainWindow):
         self.ui.groupBox_steuerung_manuell.setDisabled(True)
         self.ui.groupBox_settings_kamera.setDisabled(True)
 
-    def slider_finished(self):
+    def slider_finished(self) -> None:
+        """
+        Funktion zum Einstellen der UI, sobald der Slider-Lauf beendet wurde.
+
+        Aktiviert die Einstellungsmöglichkeiten und gibt eine Meldung aus, dass der Slider-Lauf beendet ist.
+
+        :return: None
+        """
+
         self.ui.pushButton_steuerung_slider.setEnabled(True)
         self.ui.pushButton_steuerung_kamera.setEnabled(True)
         self.ui.pushButton_steuerung_abstand.setEnabled(True)
@@ -484,17 +555,44 @@ class MainWindow(QMainWindow):
         self.ui.groupBox_steuerung_manuell.setEnabled(True)
         self.ui.groupBox_settings_kamera.setEnabled(True)
 
-    def set_distance(self, distance):
+    def set_distance(self, distance: Dict) -> None:
+        """
+        Funktion zum Setzen der gemessenen Distanzen in der UI.
+
+        :param distance: gemessene Distanzen
+        :type distance: dict
+
+        :return: None
+        """
+
         self.ui.input_info_slider_links.setText(f"{distance['left']} cm")
         self.ui.input_info_slider_rechts.setText(f"{distance['right']} cm ")
 
-    def set_sensors_connected(self):
+    def set_sensors_connected(self) -> None:
+        """
+        Funktion zum Aktivieren der UI-Elemente der Ultraschallsensoren.
+
+        Konfiguriert die zu den Ultraschallsensoren gehörenden Menü-Punkte und aktiviert die dazugehörigen UI-Elemente.
+
+        :return: None
+        """
+
         self.ui.actionConnectSensors.setDisabled(True)
         self.ui.actionDisconnectSensors.setEnabled(True)
         self.ui.groupBox_steuerung_abstand.setEnabled(True)
         self.ui.pushButton_steuerung_abstand.setEnabled(True)
 
-    def set_sensors_disconnected(self):
+    def set_sensors_disconnected(self) -> None:
+        """
+        Funktion zum Deaktivieren von UI-Elementen der Ultraschallsensoren, nachdem die Verbindung zu diesen getrennt wurde.
+
+        Konfiguriert die zu den Sensoren gehörenden Menü-Punkte.
+        Überprüft, ob noch weitere Komponenten (Kamera, Schrittmotor) verbunden sind, um das Menü weiter zu konfigurieren.
+        Anschließend werden die zu den Sensoren gehörenden UI-Elemente in ihren Ursprungszustand gestzt und deaktiviert.
+
+        :return: None
+        """
+
         self.ui.actionConnectSensors.setEnabled(True)
         self.ui.actionDisconnectSensors.setDisabled(True)
         self.ui.input_info_slider_links.setText("")
@@ -502,16 +600,49 @@ class MainWindow(QMainWindow):
         self.ui.groupBox_steuerung_abstand.setDisabled(True)
         self.ui.pushButton_steuerung_abstand.setDisabled(True)
 
-    def check_camera_settings(self, data):
+        if not self.ui.actionDisconnectCamera.isEnabled() and not self.ui.actionDisconnectMotor.isEnabled() \
+                and not self.ui.actionDisconnectSensors.isEnabled():
+            self.ui.actionDisconnect.setEnabled(True)
+
+    def check_camera_settings(self, data: Any) -> None:
+        """
+        Funktion zum Überprüfen von Eingabefeldern und Aktivieren eines dazugehörigen Button.
+
+        Überprüft, ob für die Anzahl der Aufnahmen der Kamera alle Einstellungen vorgenommen sind und aktiviert dann den Button, um die Einstellungen übertragen zu können.
+
+        :param data: zu überprüfende Daten (notwendig für Callback-Funktion)
+        :type data: Any
+
+        :return: None
+        """
+
         if self.ui.lineEdit_settings_kamera_takes.text():
             self.ui.pushButton_settings_kamera_takes.setEnabled(True)
 
-    def get_camera_settings(self):
+    def get_camera_settings(self) -> Dict:
+        """
+        Funktion gibt die Einstellungen der Kamera zurück.
+
+        Liest die eingestellten Optionen der Kamera aus der UI aus und gibt diese als Dictionary zurück.
+
+        :return: Manuelle Einstellungen der Kamera
+        :rtype: dict
+        """
+
         return {
             'focal': self.ui.comboBox_settings_kamera_blende.currentText(),
             'shutter': self.ui.comboBox_settings_kamera_shutter.currentText(),
             'iso': self.ui.comboBox_settings_kamera_iso.currentText()
         }
 
-    def get_camera_takes(self):
+    def get_camera_takes(self) -> str:
+        """
+        Funktion gibt die Anzahl an Aufnahmen für die Kamera zurück.
+
+        Liest die eingestellten Aufnahmen der Kamera aus der UI aus und gibt diese zurück.
+
+        :return: Anzahl Aufnahmen der Kamera
+        :rtype: str
+        """
+
         return self.ui.lineEdit_settings_kamera_takes.text()

@@ -1,9 +1,12 @@
 import time
 from RPi import GPIO
-from classes.pins import Pins
 
 
 class HcSr04:
+    """
+    Klasse HcSr04 für die Kommunikation mit einem Ultraschallsensor
+    """
+
     def __init__(self, trigger_pin, echo_pin):
         self.trigger_pin = trigger_pin
         self.echo_pin = echo_pin

@@ -4,6 +4,8 @@ from classes.server import Server
 
 
 if __name__ == "__main__":
+    """Main-Funktion des Servers+"""
+
     system("sudo systemctl disable pigpiod")
     sleep(0.5)
     system("sudo systemctl start pigpiod")
