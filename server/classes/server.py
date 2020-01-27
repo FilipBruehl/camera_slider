@@ -99,15 +99,15 @@ class Server:
 
         while not self.exit:                                                                                            # Dauerschleife, während "_connected" True ist
             try:
-                command_len = self.socket.recv(self.header_size)                                                        # Empfange den ersten 10 Byte großen Header
+                command_len = self.conn.recv(self.header_size)                                                        # Empfange den ersten 10 Byte großen Header
                 command_len = int(command_len.decode().strip())                                                         # Dekodiere den Header und konvertiere ihn in einen int
                 if command_len > 0:                                                                                     # Überprüfe, ob der Header größer als 0 ist
-                    command = self.socket.recv(command_len)                                                             # -> Empfange das Befehls-Objekt mit der im Header angegebenen Größe
+                    command = self.conn.recv(command_len)                                                             # -> Empfange das Befehls-Objekt mit der im Header angegebenen Größe
                     data_len = int(command[:self.header_size].decode().strip())                                         # -> Extrahiere aus dem Befehls-Objekt den 10 Byte großen Header für das Datenobjekt, dekodiere diesen und wandle ihn in einen int um
                     command = command[self.header_size:]                                                                # -> Extrahiere aus dem Befehls-Objekt den Befehls-Teil
                     command = pickle.loads(command)                                                                     # -> Dekodiere den Befehl
                     if data_len > 0:                                                                                    # Überprüfe, ob der Daten-Header größer als 0 ist
-                        data = self.socket.recv(data_len)                                                               # -> Empfange das Daten-Objekt
+                        data = self.conn.recv(data_len)                                                               # -> Empfange das Daten-Objekt
                         data = pickle.loads(data)                                                                       # -> Dekodiere das Daten-Objekt
                 print(
                     f"message received. command_len = {command_len}, command = {command}, data_len = {data_len}, data = {data}")
@@ -154,10 +154,10 @@ class Server:
             command = pickle.dumps(command)                                                                             # Konvertiere den Befehl in ein Byte-Objekt
             command = data_len + command                                                                                # Der Daten-Header wird dem Befehl im Befehls-Objekt vorangestellt
             command_len = bytes(f"{len(command):<{self.header_size}}", 'utf-8')                                         # Erstelle einen 10 Byte großen Header mit der Größe des Befehls-Objekts als Inhalt
-            self.socket.send(command_len)                                                                               # Verschicke den Befehls-Header
-            self.socket.send(command)                                                                                   # Verschicke das Befehls-Objekt
+            self.conn.send(command_len)                                                                               # Verschicke den Befehls-Header
+            self.conn.send(command)                                                                                   # Verschicke das Befehls-Objekt
             if data:                                                                                                    # Falls Daten übergeben wurden
-                self.socket.send(data)                                                                                  # -> Schicke das Daten-Objekt
+                self.conn.send(data)                                                                                  # -> Schicke das Daten-Objekt
             print(
                 f"message send. command_len = {command_len}, command = {command}, data_len = {data_len}, data = {data}")
         except Exception as e:                                                                                          # Falls ein Fehler auftritt

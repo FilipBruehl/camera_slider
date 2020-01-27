@@ -10,7 +10,6 @@
 
 * Python 3.7.x
   * pyqt5
-  * qstylizer
 
 Zum Installieren der notwendingen Python-Bibliotheken muss in der Kommandozeile des PCs folgender Befehl ausgeführt werden:
 
